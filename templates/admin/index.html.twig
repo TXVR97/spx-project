@@ -4,63 +4,51 @@
 {% endblock %}
 
 {% block content %}
-	<header class="p-4 bg-gray-800 text-gray-100">
-		<div class="container flex justify-between h-16 mx-auto">
-
-			<a rel="noopener noreferrer" href="#" aria-label="Back to homepage" class="flex items-center p-2">
-				<img src="{{ asset('images/logofinal.png')}}" alt="logo" class="w-24 pb-2 ">
-			</a>
-			<div class="flex items-center md:space-x-4">
-
-
-				<div class="relative">
-					<span class="absolute inset-y-0 left-0 flex items-center pl-2">
-						<button type="submit" title="Search" class="p-1 focus:outline-none focus:ring">
-							<svg fill="currentColor" viewbox="0 0 512 512" class="w-4 h-4 text-gray-100">
-								<path d="M479.6,399.716l-81.084-81.084-62.368-25.767A175.014,175.014,0,0,0,368,192c0-97.047-78.953-176-176-176S16,94.953,16,192,94.953,368,192,368a175.034,175.034,0,0,0,101.619-32.377l25.7,62.2L400.4,478.911a56,56,0,1,0,79.2-79.195ZM48,192c0-79.4,64.6-144,144-144s144,64.6,144,144S271.4,336,192,336,48,271.4,48,192ZM456.971,456.284a24.028,24.028,0,0,1-33.942,0l-76.572-76.572-23.894-57.835L380.4,345.771l76.573,76.572A24.028,24.028,0,0,1,456.971,456.284Z"></path>
-							</svg>
-						</button>
-					</span>
-					<input type="search" name="Search" placeholder="Search..." class="w-32 py-2 pl-10 text-sm rounded-md sm:w-auto focus:outline-none bg-gray-800 text-gray-100 focus:bg-gray-900">
-				</div>
-				<button type="button" class=" lg:hidden px-6 py-2 font-semibold rounded  bg-indigo-500 text-indigo-100 transition duration-150 ease-in-out hover:bg-indigo-600 text-xs focus:outline-none focus:ring-2 focus:ring-offset-2  focus:ring-indigo-600">Se déconnecter</button>
-				<button type="button" class=" hidden px-6 py-2 font-semibold rounded lg:block bg-indigo-500 text-indigo-100 transition duration-150 ease-in-out hover:bg-indigo-600 text-xs focus:outline-none focus:ring-2 focus:ring-offset-2  focus:ring-indigo-600">Se déconnecter</button>
-			</div>
-			
-		</div>
-	</header>
-
-	{# Cards List #}
-	<body>
+	
 
 	
+	<body>
+
+			{# Filter-Search #}
+			<div class="flex justify-center">
+				<div class="relative">
+						<span class="absolute inset-y-0 left-0 flex items-center pl-2">
+							<button type="submit" title="Search" class="p-1 focus:outline-none focus:ring">
+								<svg fill="currentColor" viewbox="0 0 512 512" class="w-4 h-4 text-gray-100">
+									<path d="M479.6,399.716l-81.084-81.084-62.368-25.767A175.014,175.014,0,0,0,368,192c0-97.047-78.953-176-176-176S16,94.953,16,192,94.953,368,192,368a175.034,175.034,0,0,0,101.619-32.377l25.7,62.2L400.4,478.911a56,56,0,1,0,79.2-79.195ZM48,192c0-79.4,64.6-144,144-144s144,64.6,144,144S271.4,336,192,336,48,271.4,48,192ZM456.971,456.284a24.028,24.028,0,0,1-33.942,0l-76.572-76.572-23.894-57.835L380.4,345.771l76.573,76.572A24.028,24.028,0,0,1,456.971,456.284Z"></path>
+								</svg>
+							</button>
+						</span>
+						<input type="search" name="Search" placeholder="Search..." class="w-32 py-2 pl-10 text-sm rounded-b-md sm:w-auto focus:outline-none bg-gray-800 text-gray-100 focus:bg-gray-900">
+					</div>
+			</div>
             <div role="radiogroup" class="mx-auto py-12 flex justify-center">
                 <!-- Code block starts -->
                 <div class="flex items-center">
                     <div class="bg-white dark:bg-gray-100 rounded-full w-4 h-4 flex flex-shrink-0 justify-center items-center relative">
-                        <input aria-labelledby="label1" checked type="radio" name="radio" class="checkbox appearance-none focus:opacity-100 focus:ring-2 focus:ring-offset-2 focus:ring-indigo-700 focus:outline-none border rounded-full border-gray-400 absolute cursor-pointer w-full h-full checked:border-none" />
+                        <input  type="radio" name="radio" class="checkbox appearance-none focus:opacity-100 focus:ring-2 focus:ring-offset-2 focus:ring-indigo-700 focus:outline-none border rounded-full border-gray-400 absolute cursor-pointer w-full h-full checked:border-none" />
                         <div class="check-icon hidden border-4 border-indigo-700 rounded-full w-full h-full z-1"></div>
                     </div>
-                    <label id="label1" class="ml-2 text-sm leading-4 font-normal text-gray-800 dark:text-gray-100">Actifs</label>
+                    <label id="active" class="ml-2 text-sm leading-4 font-normal text-gray-800 dark:text-gray-100">Actifs</label>
                 </div>
                 <!-- Code block ends -->
                 <!-- Code block starts -->
                 <div class="flex items-center ml-6">
                     <div class="bg-white dark:bg-gray-100 rounded-full w-4 h-4 flex flex-shrink-0 justify-center items-center relative">
-                        <input aria-labelledby="label2" type="radio" name="radio" class="checkbox appearance-none focus:opacity-100 focus:ring-2 focus:ring-offset-2 focus:ring-indigo-700 focus:outline-none border rounded-full border-gray-400 absolute cursor-pointer w-full h-full checked:border-none" />
+                        <input  type="radio" name="radio" class="checkbox appearance-none focus:opacity-100 focus:ring-2 focus:ring-offset-2 focus:ring-indigo-700 focus:outline-none border rounded-full border-gray-400 absolute cursor-pointer w-full h-full checked:border-none" />
                         <div class="check-icon hidden border-4 border-indigo-700 rounded-full w-full h-full z-1"></div>
                     </div>
-                    <label id="label2" class="ml-2 text-sm leading-4 font-normal text-gray-800 dark:text-gray-100">Inactifs</label>
+                    <label id="inactive" class="ml-2 text-sm leading-4 font-normal text-gray-800 dark:text-gray-100">Inactifs</label>
                 </div>
                 <!-- Code block ends -->
 
                 <!-- Code block starts -->
                 <div class="flex items-center ml-6">
                     <div class="rounded-full w-4 h-4 flex flex-shrink-0 justify-center items-center relative">
-                        <input aria-labelledby="disabled" type="radio" name="radio" class="checkbox appearance-none focus:outline-none border rounded-full border-gray-400 absolute cursor-pointer w-full h-full checked:border-none" />
+                        <input checked type="radio" name="radio" class="checkbox appearance-none focus:outline-none border rounded-full border-gray-400 absolute cursor-pointer w-full h-full checked:border-none" />
                         <div class="check-icon hidden border-4 border-indigo-700 rounded-full w-full h-full z-1"></div>
                     </div>
-                    <p id="disabled" class="ml-2 text-sm leading-4 font-normal text-gray-800 dark:text-gray-100">Tous</p>
+                    <p id="all"  class="ml-2 text-sm leading-4 font-normal text-gray-800 dark:text-gray-100">Tous</p>
                 </div>
                 <!-- Code block ends -->
                 <style>
@@ -72,7 +60,11 @@
                     }
                 </style>
             </div>
-        
+
+			<div class=" flex justify-center mb-10"> <button type="button" class="  px-6 py-2 font-semibold rounded w-96  bg-indigo-500 text-indigo-100 transition duration-150 ease-in-out hover:bg-indigo-600 text-xs focus:outline-none focus:ring-2 focus:ring-offset-2  focus:ring-indigo-600">Ajouter Partenaire</button> </div> 
+
+
+        {# Cards List #}
 
 		<div class="lg:flex justify-center  gap-8 grid  ">
 
@@ -80,11 +72,9 @@
 				<img class="object-cover object-center w-full h-56" src="https://images.unsplash.com/photo-1517841905240-472988babdf9?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=334&q=80" alt="avatar">
 
 				<div class="flex items-center px-6 py-3 bg-gray-900">
-					<svg class="w-6 h-6 text-white fill-current" viewbox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-						<path fill-rule="evenodd" clip-rule="evenodd" d="M17 21C15.8954 21 15 20.1046 15 19V15C15 13.8954 15.8954 13 17 13H19V12C19 8.13401 15.866 5 12 5C8.13401 5 5 8.13401 5 12V13H7C8.10457 13 9 13.8954 9 15V19C9 20.1046 8.10457 21 7 21H3V12C3 7.02944 7.02944 3 12 3C16.9706 3 21 7.02944 21 12V21H17ZM19 15H17V19H19V15ZM7 15H5V19H7V15Z"/>
-					</svg>
+					<div class="bg-red-700 rounded-full w-6 h-6"></div>
 
-					<h1 class="mx-3 text-lg font-semibold text-white">Focusing</h1>
+					<button type="button" class=" ml-48 px-6 py-2 font-semibold rounded w-32  bg-indigo-200 text-indigo-500 transition duration-150 ease-in-out hover:bg-indigo-100 text-xs focus:outline-none focus:ring-2 focus:ring-offset-2  focus:ring-indigo-300">Détails</button>
 				</div>
 
 				<div class="px-6 py-4">

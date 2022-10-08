@@ -1,0 +1,222 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Details
+{% endblock %}
+
+{% block content %}
+
+
+	
+		<div class="2xl:container 2xl:mx-auto lg:py-16 lg:px-20 md:py-12 md:px-6 py-9 px-4 mt-24 mx-6 bg-indigo-300 rounded-2xl shadow-inner shadow-indigo-400 relative z-2">
+		{# Block Partenaire #}
+		<div class="my-6 lg:my-12 container px-6 mx-auto flex flex-col lg:flex-row items-start lg:items-center justify-between pb-4 border-b border-gray-300">
+			<div>
+				<h1 class="text-3xl  font-bold underline leading-tight text-gray-800">Gironde</h1>
+				<ul class="flex flex-col md:flex-row items-start md:items-center text-gray-600 text-sm mt-3">
+					<li class="flex items-center mr-3 mt-3 md:mt-0">
+
+						<label for="activeornot" class="bg-gray-200  cursor-pointer relative w-10 h-5 rounded-full">
+							<input type="checkbox" id="activeornot" class="sr-only peer">
+							<span class="w-2/5 h-4/5 bg-red-700 opacity-20 shadow-sm shadow-gray-600 absolute rounded-full left-1 top-[2px] peer-checked:bg-green-400 peer-checked:opacity-100 peer-checked:left-5 transition-all duration-300 group-hover:after:translate-x-1 "></span>
+						</label>
+
+						<span class="ml-2">Status</span>
+					</li>
+					<li class="flex items-center mr-3 mt-3 md:mt-0">
+						<span class="mr-2">
+							<i class="fa fa-id-card"></i>
+						</span>
+						<span class="font-bold">
+							ID</span>
+					</li>
+					<li class="flex items-center mt-3 md:mt-0">
+						<span class="mr-2">
+							<i class="fa fa-calendar-plus"></i>
+						</span>
+						<span>Créé le 29 Jan 2020</span>
+					</li>
+				</ul>
+			</div>
+			<div class="mt-6 lg:mt-0">
+				<button class="mx-2 my-2 bg-white transition duration-150 ease-in-out focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-indigo-700 focus:ring-white hover:bg-gray-100 rounded text-indigo-700 px-6 py-2 text-sm">
+					<i class="fa fa-trash mr-2"></i>Supprimer</button>
+				<button class="mx-2 my-2 bg-white transition duration-150 ease-in-out focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-indigo-700 focus:ring-white hover:bg-gray-100 rounded text-indigo-700 px-6 py-2 text-sm">
+					<i class="fa fa-pen mr-2"></i>Modifier</button>
+				<button class="transition duration-150 ease-in-out hover:bg-indigo-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-700 border bg-indigo-500 rounded text-white px-8 py-2 w-80 ml-2 text-sm">
+					<i class="fa fa-building mr-4"></i>Ajouter Structure</button>
+			</div>
+		</div>
+		<div class="container mx-auto px-6">
+			<div class="w-full h-content rounded   border-gray-300 bg-gray-100 shadow-inner shadow-gray-400">
+				<div class="lg:grid-cols-2 grid">
+
+					<div class="flex m-5 items-center rounded shadow-md overflow-hidden max-w-xl relative hover:-translate-y-1 hover:scale-100 duration-200">
+						<div class="self-stretch flex items-center px-3 flex-shrink-0">
+							<i class="fa fa-comment-dots text-2xl text-indigo-600"></i>
+						</div>
+						<div class="p-4 flex-1">
+							<p class="text-sm dark:text-gray-400">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Nostrum quam voluptatibus</p>
+						</div>
+					</div>
+
+					<div class="flex m-5 items-center rounded shadow-md overflow-hidden max-w-xl relative hover:-translate-y-1 hover:scale-100 duration-200">
+						<div class="self-stretch flex items-center px-3 flex-shrink-0">
+							<i class="fa fa-user-tie text-2xl text-indigo-600"></i>
+						</div>
+						<div class="p-4 flex-1">
+							<p class="text-sm dark:text-gray-400">amet@consectetur.elit</p>
+						</div>
+					</div>
+
+					<div class="flex m-5 items-center rounded shadow-md overflow-hidden max-w-xl relative hover:-translate-y-1 hover:scale-100 duration-200">
+						<div class="self-stretch flex items-center px-3 flex-shrink-0">
+							<i class="fa fa-briefcase text-2xl text-indigo-600"></i>
+						</div>
+						<div class="p-4 flex-1">
+							<p class="text-sm dark:text-gray-400">amet@consectetur.elit</p>
+						</div>
+					</div>
+
+					<div class="flex m-5 items-center rounded shadow-md overflow-hidden max-w-xl relative hover:-translate-y-1 hover:scale-100 duration-200">
+						<div class="self-stretch flex items-center px-3 flex-shrink-0">
+							<i class="fa fa-at text-2xl text-indigo-600"></i>
+						</div>
+						<div class="p-4 flex-1">
+							<p class="text-sm dark:text-gray-400">www.ipsumdolorsit.amet</p>
+						</div>
+					</div>
+
+				</div>
+			</div>
+		</div>
+	</div>
+
+	{# Block structures #}
+
+	<div class="flex-1 xl:mx-8">
+		<div class="  space-y-8 md:-mx-4 md:flex md:items-center md:justify-center md:space-y-0 xl:mt-0 relative bottom-6 z-3">
+
+			<div class="max-w-sm mx-auto border-2 bg-gray-100 border-indigo-400 rounded-lg md:mx-4 text-gray-500 ">
+				<span class="relative left-[51px]  top-0 px-24 pt-[2px] pb-2 font-medium rounded-b-lg bg-indigo-400 text-gray-900">Le Beau Bois</span>
+
+				<div class="grid grid-cols-1 place-items-center mt-5">
+
+					<p>Status</p>
+					<label for="SActiveornote" class="bg-gray-200  cursor-pointer relative w-10 h-5 rounded-full">
+						<input type="checkbox" id="SActiveornote" class="sr-only peer">
+						<span class="w-2/5 h-4/5 bg-red-700 opacity-20 shadow-sm shadow-gray-600 absolute rounded-full left-1 top-[2px] peer-checked:bg-green-400 peer-checked:opacity-100 peer-checked:left-5 transition-all duration-300 group-hover:after:translate-x-1 "></span>
+					</label>
+					<p class="mt-[35px]">
+						<i class="fa fa-id-card mr-2"></i>
+						<span class="font-bold">ID</span>
+					</p>
+
+				</div>
+				<div class="p-6">
+
+					<div class="mt-4 mb-10 text-gray-500 grid grid-cols-2 gap-y-10 ">
+
+						<div class="w-24 ">
+							<span class="font-bold underline">Adresse</span>:</div>
+						<div class="mr-6">
+							<p>
+								10 impasse du Loup
+								<br>
+								36000
+								<br>
+								Bordeaux</p>
+						</div>
+
+
+						<div class="w-24">
+							<span class="font-bold underline">Manager</span>:</div>
+						<div class="mr-6">
+							<p>Maxou@glou.flou</p>
+						</div>
+
+
+						<button class="mx-2 my-2 bg-indigo-400 transition duration-150 ease-in-out focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-indigo-300 focus:ring-white hover:bg-indigo-600 rounded text-gray-100 px-6 py-2 text-sm">
+							<i class="fa fa-trash mr-2"></i>Supprimer</button>
+						<button class="mx-2 my-2 bg-indigo-400 transition duration-150 ease-in-out focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-indigo-300 focus:ring-white hover:bg-indigo-600 rounded text-gray-100 px-6 py-2 text-sm">
+							<i class="fa fa-pen mr-2"></i>Modifier</button>
+					</div>
+
+					<hr class="border-gray-200 dark:border-gray-700">
+
+					<div class="p-6">
+						<h1 class="text-lg font-medium text-gray-700 capitalize lg:text-xl ">Services:</h1>
+
+						<div class="mt-8 space-y-4">
+							<div class="flex items-center">
+
+								<label for="boisson" class="bg-gray-200  cursor-pointer relative w-10 h-5 rounded-full">
+									<input type="checkbox" id="boisson" class="sr-only peer">
+									<span class="w-2/5 h-4/5 bg-indigo-400 opacity-20 shadow-sm shadow-gray-600 absolute rounded-full left-1 top-[2px] peer-checked:bg-green-400 peer-checked:opacity-100 peer-checked:left-5 transition-all duration-300 group-hover:after:translate-x-1 "></span>
+								</label>
+
+								<span class="mx-4 text-gray-700 dark:text-gray-300">Accès distributeur boissons</span>
+							</div>
+
+							<div class="flex items-center">
+								<label for="Merchandising" class="bg-gray-200  cursor-pointer relative w-10 h-5 rounded-full">
+									<input type="checkbox" id="Merchandising" class="sr-only peer">
+									<span class="w-2/5 h-4/5 bg-indigo-400 opacity-20 shadow-sm shadow-gray-600 absolute rounded-full left-1 top-[2px] peer-checked:bg-green-400 peer-checked:opacity-100 peer-checked:left-5 transition-all duration-300 group-hover:after:translate-x-1 "></span>
+								</label>
+
+								<span class="mx-4 text-gray-700 dark:text-gray-300">Vente de sacs à dos</span>
+							</div>
+
+							<div class="flex items-center">
+								<label for="coaching" class="bg-gray-200  cursor-pointer relative w-10 h-5 rounded-full">
+									<input type="checkbox" id="coaching" class="sr-only peer">
+									<span class="w-2/5 h-4/5 bg-indigo-400 opacity-20 shadow-sm shadow-gray-600 absolute rounded-full left-1 top-[2px] peer-checked:bg-green-400 peer-checked:opacity-100 peer-checked:left-5 transition-all duration-300 group-hover:after:translate-x-1 "></span>
+								</label>
+
+								<span class="mx-4 text-gray-700 dark:text-gray-300">Accès borne Coach</span>
+							</div>
+
+							<div class="flex items-center">
+								<label for="mobileapp" class="bg-gray-200  cursor-pointer relative w-10 h-5 rounded-full">
+									<input type="checkbox" id="mobileapp" class="sr-only peer">
+									<span class="w-2/5 h-4/5 bg-indigo-400 opacity-20 shadow-sm shadow-gray-600 absolute rounded-full left-1 top-[2px] peer-checked:bg-green-400 peer-checked:opacity-100 peer-checked:left-5 transition-all duration-300 group-hover:after:translate-x-1 "></span>
+								</label>
+
+								<span class="mx-4 text-gray-700 dark:text-gray-300">Application mobile</span>
+							</div>
+
+							<div class="flex items-center">
+								<label for="software" class="bg-gray-200  cursor-pointer relative w-10 h-5 rounded-full">
+									<input type="checkbox" id="software" class="sr-only peer">
+									<span class="w-2/5 h-4/5 bg-indigo-400 opacity-20 shadow-sm shadow-gray-600 absolute rounded-full left-1 top-[2px] peer-checked:bg-green-400 peer-checked:opacity-100 peer-checked:left-5 transition-all duration-300 group-hover:after:translate-x-1 "></span>
+								</label>
+
+								<span class="mx-4 text-gray-700 dark:text-gray-300">Logiciel CRM</span>
+							</div>
+
+							<div class="flex items-center">
+								<label for="Subscription" class="bg-gray-200  cursor-pointer relative w-10 h-5 rounded-full">
+									<input type="checkbox" id="Subscription" class="sr-only peer">
+									<span class="w-2/5 h-4/5 bg-indigo-400 opacity-20 shadow-sm shadow-gray-600 absolute rounded-full left-1 top-[2px] peer-checked:bg-green-400 peer-checked:opacity-100 peer-checked:left-5 transition-all duration-300 group-hover:after:translate-x-1 "></span>
+								</label>
+
+								<span class="mx-4 text-gray-700 dark:text-gray-300">Abonnement Sport Mag</span>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<div class="max-w-sm mx-auto border-2 bg-gray-100 border-indigo-400 rounded-lg md:mx-4 text-gray-500 ">
+				<div class="h-[815px] w-[382.78px] flex justify-center items-center ">
+					<div class=" ">
+						<button class="p-0 w-16 h-16 ring-2 shadow-inner shadow-gray-300 ring-indigo-200 rounded-full bg-indigo-500 text-indigo-100 transition duration-150 ease-in-out hover:bg-indigo-600 text-xs focus:outline-none focus:ring-2 focus:ring-offset-2  focus:ring-indigo-600">
+							<i class="fa fa-plus text-gray-100"></i>
+						</button>
+					</div>
+				</div>
+			</div>
+
+		</div>
+
+
+	{% endblock %}

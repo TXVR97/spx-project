@@ -23,8 +23,11 @@
         "watch": "encore dev --watch",
         "build": "encore production --progress"
     },
-    "engines":{
+    "engines": {
         "node": "v16.14.*",
         "npm": "8.5.*"
+    },
+    "dependencies": {
+        
     }
 }

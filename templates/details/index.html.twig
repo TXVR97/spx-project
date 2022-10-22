@@ -11,7 +11,7 @@
 		{# Block Partenaire #}
 		<div class="my-6 lg:my-12 container px-6 mx-auto flex flex-col lg:flex-row items-start lg:items-center justify-between pb-4 border-b border-gray-300">
 			<div>
-				<h1 class="text-3xl  font-bold underline leading-tight text-gray-800">Gironde</h1>
+				<h1 class="text-3xl  font-bold underline leading-tight text-gray-800">{{partner.name}}</h1>
 				<ul class="flex flex-col md:flex-row items-start md:items-center text-gray-600 text-sm mt-3">
 					<li class="flex items-center mr-3 mt-3 md:mt-0">
 
@@ -27,21 +27,21 @@
 							<i class="fa fa-id-card"></i>
 						</span>
 						<span class="font-bold">
-							ID</span>
+							ID {{partner.id}}</span>
 					</li>
 					<li class="flex items-center mt-3 md:mt-0">
 						<span class="mr-2">
 							<i class="fa fa-calendar-plus"></i>
 						</span>
-						<span>Créé le 29 Jan 2020</span>
+						<span>Créé le {{partner.CreatedAt | date ('d-m-Y')}}</span>
 					</li>
 				</ul>
 			</div>
 			<div class="mt-6 lg:mt-0">
 				<button class="mx-2 my-2 bg-white transition duration-150 ease-in-out focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-indigo-700 focus:ring-white hover:bg-gray-100 rounded text-indigo-700 px-6 py-2 text-sm">
 					<i class="fa fa-trash mr-2"></i>Supprimer</button>
-				<button class="mx-2 my-2 bg-white transition duration-150 ease-in-out focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-indigo-700 focus:ring-white hover:bg-gray-100 rounded text-indigo-700 px-6 py-2 text-sm">
-					<i class="fa fa-pen mr-2"></i>Modifier</button>
+				<a href="{{path('modification_partenaire', {'slug':partner.slug} )}}"><button class="mx-2 my-2 bg-white transition duration-150 ease-in-out focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-indigo-700 focus:ring-white hover:bg-gray-100 rounded text-indigo-700 px-6 py-2 text-sm">
+					<i class="fa fa-pen mr-2"></i>Modifier</button></a>
 				<button class="transition duration-150 ease-in-out hover:bg-indigo-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-700 border bg-indigo-500 rounded text-white px-8 py-2 w-64  ml-2 text-sm">
 					<i class="fa fa-building mr-4"></i>Ajouter Structure</button>
 			</div>
@@ -55,7 +55,7 @@
 							<i class="fa fa-comment-dots text-2xl text-indigo-600"></i>
 						</div>
 						<div class="p-4 flex-1">
-							<p class="text-sm dark:text-gray-400">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Nostrum quam voluptatibus</p>
+							<p class="text-sm dark:text-gray-400">{{partner.description}}</p>
 						</div>
 					</div>
 
@@ -64,7 +64,7 @@
 							<i class="fa fa-user-tie text-2xl text-indigo-600"></i>
 						</div>
 						<div class="p-4 flex-1">
-							<p class="text-sm dark:text-gray-400">amet@consectetur.elit</p>
+							<p class="text-sm dark:text-gray-400">{{partner.ManageContact}}</p>
 						</div>
 					</div>
 
@@ -73,7 +73,7 @@
 							<i class="fa fa-briefcase text-2xl text-indigo-600"></i>
 						</div>
 						<div class="p-4 flex-1">
-							<p class="text-sm dark:text-gray-400">amet@consectetur.elit</p>
+							<p class="text-sm dark:text-gray-400">{{partner.ComContact}}</p>
 						</div>
 					</div>
 
@@ -82,7 +82,7 @@
 							<i class="fa fa-at text-2xl text-indigo-600"></i>
 						</div>
 						<div class="p-4 flex-1">
-							<p class="text-sm dark:text-gray-400">www.ipsumdolorsit.amet</p>
+							<p class="text-sm dark:text-gray-400">{{partner.website}}</p>
 						</div>
 					</div>
 

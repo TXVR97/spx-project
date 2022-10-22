@@ -3,8 +3,11 @@
 namespace App\Entity;
 
 use App\Repository\StructureRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity(repositoryClass: StructureRepository::class)]
 class Structure
@@ -14,20 +17,37 @@ class Structure
     #[ORM\Column]
     private ?int $id = null;
 
+    #[Assert\Length(
+        min: 2,
+        max: 50,
+        minMessage: 'Le nom doit être au moins de {{ limit }} caractères',
+        maxMessage: 'Le nom ne peut pas dépasser {{ limit }} characters',
+    )]
+    #[Assert\NotBlank]
     #[ORM\Column(length: 255)]
     private ?string $name = null;
 
+    #[Assert\NotBlank]
     #[ORM\Column(length: 255)]
     private ?string $adress = null;
 
+    #[Assert\Email(
+        message: 'Cette adresse email {{ value }} n\'est pas valide.',
+    )]
     #[ORM\Column(length: 255)]
     private ?string $manager = null;
 
-    #[ORM\Column]
-    private ?bool $status = null;
 
     #[ORM\Column(type: Types::DATETIME_MUTABLE)]
     private ?\DateTimeInterface $createdAt = null;
+
+    #[ORM\OneToMany(mappedBy: 'structure', targetEntity: User::class)]
+    private Collection $structure;
+
+    public function __construct()
+    {
+        $this->structure = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -70,18 +90,7 @@ class Structure
         return $this;
     }
 
-    public function isStatus(): ?bool
-    {
-        return $this->status;
-    }
-
-    public function setStatus(bool $status): self
-    {
-        $this->status = $status;
-
-        return $this;
-    }
-
+    
     public function getCreatedAt(): ?\DateTimeInterface
     {
         return $this->createdAt;
@@ -90,6 +99,36 @@ class Structure
     public function setCreatedAt(\DateTimeInterface $createdAt): self
     {
         $this->createdAt = $createdAt;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, User>
+     */
+    public function getStructure(): Collection
+    {
+        return $this->structure;
+    }
+
+    public function addStructure(User $structure): self
+    {
+        if (!$this->structure->contains($structure)) {
+            $this->structure->add($structure);
+            $structure->setStructure($this);
+        }
+
+        return $this;
+    }
+
+    public function removeStructure(User $structure): self
+    {
+        if ($this->structure->removeElement($structure)) {
+            // set the owning side to null (unless already changed)
+            if ($structure->getStructure() === $this) {
+                $structure->setStructure(null);
+            }
+        }
 
         return $this;
     }

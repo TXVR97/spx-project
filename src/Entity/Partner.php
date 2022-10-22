@@ -2,11 +2,19 @@
 
 namespace App\Entity;
 
-use App\Repository\PartnerRepository;
-use Doctrine\Common\Collections\ArrayCollection;
-use Doctrine\Common\Collections\Collection;
+
+
+
+
+
+use App\Entity\User;
+use Cocur\Slugify\Slugify;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use App\Repository\PartnerRepository;
+use Doctrine\Common\Collections\Collection;
+use Doctrine\Common\Collections\ArrayCollection;
+use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity(repositoryClass: PartnerRepository::class)]
 class Partner
@@ -19,39 +27,61 @@ class Partner
     #[ORM\OneToMany(mappedBy: 'partner', targetEntity: User::class)]
     private Collection $user;
 
+    #[Assert\Length(
+        min: 2,
+        max: 50,
+        minMessage: 'Le nom doit être au moins de {{ limit }} caractères',
+        maxMessage: 'Le nom ne peut pas dépasser {{ limit }} characters',
+    )]
     #[ORM\Column(length: 255)]
+    #[Assert\NotBlank]
     private ?string $name = null;
 
-    #[ORM\Column]
-    private ?bool $Status = null;
-
+    #[Assert\Length(
+        min: 2,
+        max: 100,
+        minMessage: 'Doit être au moins de {{ limit }} caractères',
+        maxMessage: 'Ne peut pas dépasser {{ limit }} characters',
+    )]
+    #[Assert\NotBlank]
     #[ORM\Column(type: Types::TEXT)]
     private ?string $description = null;
 
+    #[Assert\Email(
+        message: 'Cette adresse email {{ value }} n\'est pas valide.',
+    )]
     #[ORM\Column(length: 255)]
     private ?string $ComContact = null;
 
+    #[Assert\Url]
     #[ORM\Column(length: 255)]
     private ?string $website = null;
 
+    #[Assert\Email(
+        message: 'Cette adresse email {{ value }} n\'est pas valide.',
+    )]
     #[ORM\Column(length: 255)]
     private ?string $ManageContact = null;
 
+    #[Assert\NotBlank]
     #[ORM\Column(length: 255)]
     private ?string $City = null;
 
     #[ORM\Column(length: 255)]
     private ?string $image = null;
 
+    
     #[ORM\Column(type: Types::DATETIME_MUTABLE)]
     private ?\DateTimeInterface $CreatedAt = null;
 
     #[ORM\Column(length: 255)]
     private ?string $slug = null;
 
+
     public function __construct()
     {
         $this->user = new ArrayCollection();
+        
     }
 
     public function getId(): ?int
@@ -97,21 +127,12 @@ class Partner
     public function setName(string $name): self
     {
         $this->name = $name;
+        $slug = (new Slugify())->slugify($this->name); 
+        $this -> setSlug($slug);
 
         return $this;
     }
 
-    public function isStatus(): ?bool
-    {
-        return $this->Status;
-    }
-
-    public function setStatus(bool $Status): self
-    {
-        $this->Status = $Status;
-
-        return $this;
-    }
 
     public function getDescription(): ?string
     {

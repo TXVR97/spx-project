@@ -4,111 +4,118 @@
 {% endblock %}
 
 {% block content %}
-	
 
-	
+
 	<body>
 
-			{# Filter-Search #}
-			<div class="flex justify-center">
-				<div class="relative">
-						<span class="absolute inset-y-0 left-0 flex items-center pl-2">
-							<button type="submit" title="Search" class="p-1 focus:outline-none focus:ring">
-								<svg fill="currentColor" viewbox="0 0 512 512" class="w-4 h-4 text-gray-100">
-									<path d="M479.6,399.716l-81.084-81.084-62.368-25.767A175.014,175.014,0,0,0,368,192c0-97.047-78.953-176-176-176S16,94.953,16,192,94.953,368,192,368a175.034,175.034,0,0,0,101.619-32.377l25.7,62.2L400.4,478.911a56,56,0,1,0,79.2-79.195ZM48,192c0-79.4,64.6-144,144-144s144,64.6,144,144S271.4,336,192,336,48,271.4,48,192ZM456.971,456.284a24.028,24.028,0,0,1-33.942,0l-76.572-76.572-23.894-57.835L380.4,345.771l76.573,76.572A24.028,24.028,0,0,1,456.971,456.284Z"></path>
-								</svg>
-							</button>
-						</span>
-						<input type="search" name="Search" placeholder="Search..." class="w-32 py-2 pl-10 text-sm rounded-b-md sm:w-auto focus:outline-none bg-gray-800 text-gray-100 focus:bg-gray-900">
-					</div>
+		{# Filter-Search #}
+		<div class="flex justify-center">
+			<div class="relative">
+				<span class="absolute inset-y-0 left-0 flex items-center pl-2">
+					<button type="submit" title="Search" class="p-1 focus:outline-none focus:ring">
+						<svg fill="currentColor" viewbox="0 0 512 512" class="w-4 h-4 text-gray-100">
+							<path d="M479.6,399.716l-81.084-81.084-62.368-25.767A175.014,175.014,0,0,0,368,192c0-97.047-78.953-176-176-176S16,94.953,16,192,94.953,368,192,368a175.034,175.034,0,0,0,101.619-32.377l25.7,62.2L400.4,478.911a56,56,0,1,0,79.2-79.195ZM48,192c0-79.4,64.6-144,144-144s144,64.6,144,144S271.4,336,192,336,48,271.4,48,192ZM456.971,456.284a24.028,24.028,0,0,1-33.942,0l-76.572-76.572-23.894-57.835L380.4,345.771l76.573,76.572A24.028,24.028,0,0,1,456.971,456.284Z"></path>
+						</svg>
+					</button>
+				</span>
+				<input type="search" name="Search" placeholder="Search..." class="w-32 py-2 pl-10 text-sm rounded-b-md sm:w-auto focus:outline-none bg-gray-800 text-gray-100 focus:bg-gray-900">
 			</div>
-            <div role="radiogroup" class="mx-auto py-12 flex justify-center">
-                <!-- Code block starts -->
-                <div class="flex items-center">
-                    <div class="bg-white rounded-full w-4 h-4 flex flex-shrink-0 justify-center items-center relative">
-                        <input  type="radio" name="radio" class="checkbox appearance-none focus:opacity-100 focus:ring-2 focus:ring-offset-2 focus:ring-indigo-700 focus:outline-none border rounded-full border-gray-400 absolute cursor-pointer w-full h-full checked:border-none" />
-                        <div class="check-icon hidden border-4 border-indigo-700 rounded-full w-full h-full z-1"></div>
-                    </div>
-                    <label id="active" class="ml-2 text-sm leading-4 font-normal text-gray-800">Actifs</label>
-                </div>
-                <!-- Code block ends -->
-                <!-- Code block starts -->
-                <div class="flex items-center ml-6">
-                    <div class="bg-white rounded-full w-4 h-4 flex flex-shrink-0 justify-center items-center relative">
-                        <input  type="radio" name="radio" class="checkbox appearance-none focus:opacity-100 focus:ring-2 focus:ring-offset-2 focus:ring-indigo-700 focus:outline-none border rounded-full border-gray-400 absolute cursor-pointer w-full h-full checked:border-none" />
-                        <div class="check-icon hidden border-4 border-indigo-700 rounded-full w-full h-full z-1"></div>
-                    </div>
-                    <label id="inactive" class="ml-2 text-sm leading-4 font-normal text-gray-800">Inactifs</label>
-                </div>
-                <!-- Code block ends -->
-
-                <!-- Code block starts -->
-                <div class="flex items-center ml-6">
-                    <div class="rounded-full w-4 h-4 flex flex-shrink-0 justify-center items-center relative">
-                        <input checked type="radio" name="radio" class="checkbox appearance-none focus:outline-none border rounded-full border-gray-400 absolute cursor-pointer w-full h-full checked:border-none" />
-                        <div class="check-icon hidden border-4 border-indigo-700 rounded-full w-full h-full z-1"></div>
-                    </div>
-                    <p id="all"  class="ml-2 text-sm leading-4 font-normal text-gray-800">Tous</p>
-                </div>
-                <!-- Code block ends -->
-                <style>
-                    .checkbox:checked {
-                        border: none;
-                    }
-                    .checkbox:checked + .check-icon {
-                        display: flex;
-                    }
-                </style>
-            </div>
-
-			<div class=" flex justify-center mb-10"> <a href="#"><button type="button" class="  px-6 py-2 font-semibold rounded w-96  bg-indigo-500 text-indigo-100 transition duration-150 ease-in-out hover:bg-indigo-600 text-xs focus:outline-none focus:ring-2 focus:ring-offset-2  focus:ring-indigo-600">Ajouter Partenaire</button></a> </div> 
-			
-
-
-        {# Boucle Cards List #}
-
-	{# {% for partner in partners %} #}
-		<div class="lg:flex justify-center  gap-8 grid  ">
-
-			<div class=" w-96 h-fit overflow-hidden bg-white rounded-lg shadow-lg">
-				<img class="object-cover object-center w-full h-56" src="https://images.unsplash.com/photo-1517841905240-472988babdf9?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=334&q=80" alt="avatar">
-
-				<div class="flex items-center px-6 py-3 bg-gray-900">
-					<div class="bg-red-700 rounded-full w-6 h-6"></div>
-
-					<a href="{{path('details')}}" class="w-4" ><button type="button" class=" ml-48 px-6 py-2 font-semibold rounded w-32  bg-indigo-200 text-indigo-500 transition duration-150 ease-in-out hover:bg-indigo-100 text-xs focus:outline-none focus:ring-2 focus:ring-offset-2  focus:ring-indigo-300">Détails</button></a>
-				</div>
-
-				<div class="px-6 py-4">
-					<div class="flex justify-end "><button class="px-6 py-2 font-semibold rounded w-fit text-xs  bg-white transition duration-150 ease-in-out focus:outline-none ring-1 ring-indigo-400 focus:ring-2 focus:ring-offset-2 focus:ring-offset-indigo-700 focus:ring-white   text-indigo-700"> <i class="fa fa-pen  "></i> </button></div>
-					<h1 class="text-xl font-semibold text-gray-800">Gironde</h1>
-					
-
-					<p class="py-2 text-gray-700">La salle de sport magique.</p>
-
-					<div class="flex items-center mt-4 text-gray-700">
-						<i class="fa fa-id-badge text-2xl"></i>
-
-						<h1 class="px-2 text-sm">ID 1</h1>
-					</div>
-
-					<div class="flex items-center mt-4 text-gray-700">
-						<i class="fa fa-location-arrow text-2xl"></i>
-						<h1 class="px-2 text-sm">Paris</h1>
-					</div>
-
-					<div class="flex items-center mt-4 text-gray-700">
-						<i class="fa fa-globe text-2xl"></i>
-
-						<h1 class="px-2 text-sm">patterson@example.com</h1>
-					</div>
-				</div>
-			</div>
-
-			
-
 		</div>
-	{# {{% endfor %}} #}
-	</body>
-	{% endblock %}
+		<div
+			role="radiogroup" class="mx-auto py-12 flex justify-center">
+			<!-- Code block starts -->
+			<div class="flex items-center">
+				<div class="bg-white rounded-full w-4 h-4 flex flex-shrink-0 justify-center items-center relative">
+					<input type="radio" name="radio" class="checkbox appearance-none focus:opacity-100 focus:ring-2 focus:ring-offset-2 focus:ring-indigo-700 focus:outline-none border rounded-full border-gray-400 absolute cursor-pointer w-full h-full checked:border-none"/>
+					<div class="check-icon hidden border-4 border-indigo-700 rounded-full w-full h-full z-1"></div>
+				</div>
+				<label id="active" class="ml-2 text-sm leading-4 font-normal text-gray-800">Actifs</label>
+			</div>
+			<!-- Code block ends -->
+			<!-- Code block starts -->
+			<div class="flex items-center ml-6">
+				<div class="bg-white rounded-full w-4 h-4 flex flex-shrink-0 justify-center items-center relative">
+					<input type="radio" name="radio" class="checkbox appearance-none focus:opacity-100 focus:ring-2 focus:ring-offset-2 focus:ring-indigo-700 focus:outline-none border rounded-full border-gray-400 absolute cursor-pointer w-full h-full checked:border-none"/>
+					<div class="check-icon hidden border-4 border-indigo-700 rounded-full w-full h-full z-1"></div>
+				</div>
+				<label id="inactive" class="ml-2 text-sm leading-4 font-normal text-gray-800">Inactifs</label>
+			</div>
+			<!-- Code block ends -->
 
+			<!-- Code block starts -->
+			<div class="flex items-center ml-6">
+				<div class="rounded-full w-4 h-4 flex flex-shrink-0 justify-center items-center relative">
+					<input checked type="radio" name="radio" class="checkbox appearance-none focus:outline-none border rounded-full border-gray-400 absolute cursor-pointer w-full h-full checked:border-none"/>
+					<div class="check-icon hidden border-4 border-indigo-700 rounded-full w-full h-full z-1"></div>
+				</div>
+				<p id="all" class="ml-2 text-sm leading-4 font-normal text-gray-800">Tous</p>
+			</div>
+			<!-- Code block ends -->
+			<style>
+				.checkbox:checked {
+					border: none;
+				}
+				.checkbox:checked + .check-icon {
+					display: flex;
+				}
+			</style>
+		</div>
+
+		<div class=" flex justify-center mb-10">
+			<a href="{{path('ajout_partneaire')}}">
+				<button type="button" class="  px-6 py-2 font-semibold rounded w-96  bg-indigo-500 text-indigo-100 transition duration-150 ease-in-out hover:bg-indigo-600 text-xs focus:outline-none focus:ring-2 focus:ring-offset-2  focus:ring-indigo-600">Ajouter Partenaire</button>
+			</a>
+		</div>
+
+
+		{# Boucle Cards List #}
+
+		{% for partner in partners %}
+			<div class="lg:flex justify-center  gap-8 grid  ">
+
+				<div class=" w-96 h-fit overflow-hidden bg-white rounded-lg shadow-lg">
+					<img class="object-cover object-center w-full h-56" src="https://images.unsplash.com/photo-1517841905240-472988babdf9?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=334&q=80" alt="avatar">
+
+					<div class="flex items-center px-6 py-3 bg-gray-900">
+						<div class="bg-red-700 rounded-full w-6 h-6"></div>
+
+						<a href="{{path('details', {'slug': partner.slug })}}" class="w-4">
+							<button type="button" class=" ml-48 px-6 py-2 font-semibold rounded w-32  bg-indigo-200 text-indigo-500 transition duration-150 ease-in-out hover:bg-indigo-100 text-xs focus:outline-none focus:ring-2 focus:ring-offset-2  focus:ring-indigo-300">Détails</button>
+						</a>
+					</div>
+
+					<div class="px-6 py-4">
+						<div class="flex justify-end ">
+							<button class="px-6 py-2 font-semibold rounded w-fit text-xs  bg-white transition duration-150 ease-in-out focus:outline-none ring-1 ring-indigo-400 focus:ring-2 focus:ring-offset-2 focus:ring-offset-indigo-700 focus:ring-white   text-indigo-700">
+								<i class="fa fa-pen  "></i>
+							</button>
+						</div>
+						<h1 class="text-xl font-semibold text-gray-800">{{partner.name}}</h1>
+
+
+						<p class="py-2 text-gray-700">{{partner.description}}</p>
+
+						<div class="flex items-center mt-4 text-gray-700">
+							<i class="fa fa-id-badge text-2xl"></i>
+
+							<h1 class="px-2 text-sm">ID {{partner.id}}</h1>
+						</div>
+
+						<div class="flex items-center mt-4 text-gray-700">
+							<i class="fa fa-location-arrow text-2xl"></i>
+							<h1 class="px-2 text-sm">{{partner.city}}</h1>
+						</div>
+
+						<div class="flex items-center mt-4 text-gray-700">
+							<i class="fa fa-globe text-2xl"></i>
+
+							<h1 class="px-2 text-sm">{{partner.website}}</h1>
+						</div>
+					</div>
+				</div>
+
+
+			</div>
+		{% endfor %}
+	</body>
+{% endblock %}

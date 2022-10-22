@@ -4,6 +4,7 @@ namespace App\Entity;
 
 use App\Repository\PermissionRepository;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity(repositoryClass: PermissionRepository::class)]
 class Permission
@@ -13,6 +14,13 @@ class Permission
     #[ORM\Column]
     private ?int $id = null;
 
+    #[Assert\Length(
+        min: 2,
+        max: 50,
+        minMessage: 'Le nom doit être au moins de {{ limit }} caractères',
+        maxMessage: 'Le nom ne peut pas dépasser {{ limit }} characters',
+    )]
+    #[Assert\NotBlank]
     #[ORM\Column(length: 255)]
     private ?string $name = null;
 

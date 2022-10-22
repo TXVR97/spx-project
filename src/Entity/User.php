@@ -5,6 +5,7 @@ namespace App\Entity;
 use App\Repository\UserRepository;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity(repositoryClass: UserRepository::class)]
 class User
@@ -14,12 +15,29 @@ class User
     #[ORM\Column]
     private ?int $id = null;
 
+    #[Assert\Length(
+        min: 2,
+        max: 50,
+        minMessage: 'Doit être au moins de {{ limit }} caractères',
+        maxMessage: 'Ne peut pas dépasser {{ limit }} characters',
+    )]
+    #[Assert\NotBlank]
     #[ORM\Column(length: 50)]
     private ?string $FirstName = null;
 
+    #[Assert\Length(
+        min: 2,
+        max: 50,
+        minMessage: 'Doit être au moins de {{ limit }} caractères',
+        maxMessage: 'Ne peut pas dépasser {{ limit }} characters',
+    )]
+    #[Assert\NotBlank]
     #[ORM\Column(length: 50)]
     private ?string $LastName = null;
 
+    #[Assert\Email(
+        message: 'Cette adresse email {{ value }} n\'est pas valide.',
+    )]
     #[ORM\Column(length: 255)]
     private ?string $Email = null;
 
@@ -34,6 +52,9 @@ class User
 
     #[ORM\ManyToOne(inversedBy: 'user')]
     private ?Partner $partner = null;
+
+    #[ORM\ManyToOne(inversedBy: 'structure')]
+    private ?Structure $structure = null;
 
     public function getId(): ?int
     {
@@ -120,6 +141,18 @@ class User
     public function setPartner(?Partner $partner): self
     {
         $this->partner = $partner;
+
+        return $this;
+    }
+
+    public function getStructure(): ?Structure
+    {
+        return $this->structure;
+    }
+
+    public function setStructure(?Structure $structure): self
+    {
+        $this->structure = $structure;
 
         return $this;
     }

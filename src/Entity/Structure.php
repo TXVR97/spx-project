@@ -45,8 +45,6 @@ class Structure
     #[ORM\OneToMany(mappedBy: 'structure', targetEntity: User::class)]
     private Collection $structure;
 
-    #[ORM\ManyToOne(inversedBy: 'structures')]
-    private ?User $user = null;
 
    
 

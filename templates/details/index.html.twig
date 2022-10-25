@@ -46,8 +46,10 @@
 					<button class="mx-2 my-2 bg-white transition duration-150 ease-in-out focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-indigo-700 focus:ring-white hover:bg-gray-100 rounded text-indigo-700 px-6 py-2 text-sm">
 						<i class="fa fa-pen mr-2"></i>Modifier</button>
 				</a>
+				<a href="{{path('ajout_structure', {'slug':partner.slug})}}">
 				<button class="transition duration-150 ease-in-out hover:bg-indigo-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-700 border bg-indigo-500 rounded text-white px-8 py-2 w-64  ml-2 text-sm">
 					<i class="fa fa-building mr-4"></i>Ajouter Structure</button>
+					</a>
 			</div>
 		</div>
 		<div class="container mx-auto px-6">
@@ -142,9 +144,10 @@
 
 							<a href="{{path('structure_delete', {'id':structure.id} )}}">
 								<button class="mx-2 my-2 bg-indigo-400 transition duration-150 ease-in-out focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-indigo-300 focus:ring-white hover:bg-indigo-600 rounded text-gray-100 px-6 py-2 text-sm">
-									<i class="fa fa-trash mr-2"></i>Supprimer</button>
+									<i class="fa fa-trash mr-2"></i>Supprimer</button></a>
+									<a href="{{path('modification_structure', {'slug':structure.slug} )}}">
 								<button class="mx-2 my-2 bg-indigo-400 transition duration-150 ease-in-out focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-indigo-300 focus:ring-white hover:bg-indigo-600 rounded text-gray-100 px-6 py-2 text-sm">
-									<i class="fa fa-pen mr-2"></i>Modifier</button>
+									<i class="fa fa-pen mr-2"></i>Modifier</button></a>
 							</a>
 						</div>
 

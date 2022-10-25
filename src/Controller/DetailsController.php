@@ -111,6 +111,30 @@ class DetailsController extends AbstractController
     }
     
 
+    #[Route('/admin/details/{slug}/modifier', name: 'modification_structure', methods: ['GET', 'POST'])]
+    public function edit_structure( Structure $structure,Request $request,StructureRepository $structureRepository, $slug, EntityManagerInterface $entityManager): Response
+    {
+        
+        if (!$structure){
+            return $this-> redirectToRoute('app_admin');
+        }
 
+        $structure = $structureRepository->findOneBy(["slug" => $slug]);
+        $form_structure = $this->createForm(StructureType::class, $structure);
+
+        $form_structure->handleRequest($request);
+
+        if ($form_structure->isSubmitted() ) {
+            
+            
+            $entityManager->persist($structure);
+            $entityManager->flush();
+            return $this->redirectToRoute('app_admin');
+        }
+
+        return $this->render('structure/edit.html.twig', [
+            'form_structure' => $form_structure->createView()
+        ]);
+    }
     
 }

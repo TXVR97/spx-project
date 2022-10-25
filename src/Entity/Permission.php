@@ -6,7 +6,6 @@ use App\Repository\PermissionRepository;
 
 use Doctrine\ORM\Mapping as ORM;
 
-use PhpParser\Node\NullableType;
 use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity(repositoryClass: PermissionRepository::class)]
@@ -15,6 +14,8 @@ class Permission
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]
+   
+
     private ?int $id = Null;
 
     #[Assert\Length(

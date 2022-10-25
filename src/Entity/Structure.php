@@ -53,7 +53,7 @@ class Structure
     #[ORM\Column(length: 255)]
     private ?string $slug = null;
 
-    #[ORM\OneToMany(mappedBy: 'service', targetEntity: Permission::class)]
+    #[ORM\OneToMany(mappedBy: 'service', targetEntity: Permission::class,cascade: ['persist'] ,orphanRemoval: true)]
     private Collection $permissions;
 
     

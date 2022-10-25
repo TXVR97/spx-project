@@ -51,46 +51,9 @@ class AdminController extends AbstractController
 
 
 
-    #[Route('/admin/ajout-service', name: 'ajout_service', methods: ['GET', 'POST'])]
-    public function ajout_permission(Request $request, EntityManagerInterface $manager): Response
-    {
-
-        $permission = new Permission();
-        $form_service = $this->createForm(PermissionType::class, $permission);
-        $form_service->handleRequest($request);
-
-        if ($form_service->isSubmitted() ) { 
-            
-            $manager->persist($permission);
-            $manager->flush();
-            return $this->redirectToRoute('app_admin');
-        }
-
-        return $this->render('permission/new_permission.html.twig', [
-            'form_service' => $form_service->createView()
-        ]);
-    }
-
-    #[Route('/admin/ajout-service/services', name: 'les_services', methods: ['GET', 'POST'])]
-    public function service(PermissionRepository $permissionRepository): Response
-    {
-        $permissions = $permissionRepository->findAll();
-        return $this->render('permission/show.html.twig', [
-            'permissions' => $permissions,
-        ]);
-    }
-
-    #[Route('/admin/ajout-service/services/supprimer/{id}', name: 'service_delete', methods: ['GET', 'POST'])]
     
-    public function delete(EntityManagerInterface $manager, Permission $permission, int $id, PermissionRepository $permissionRepository) : Response 
-    {
-        $permission = $permissionRepository->findOneBy(["id" => $id]);
-        $manager->remove($permission);
-        $manager->flush();
 
-        return $this-> redirectToRoute('app_admin');
-
-    }
+    
 
 
 

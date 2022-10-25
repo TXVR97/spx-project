@@ -2,12 +2,15 @@
 
 {% block title %}Edit Permission{% endblock %}
 
-{% block body %}
-    <h1>Edit Permission</h1>
+{% block content %}
+    <h1>Edit Partner</h1>
+    <div class="w-full md:w-[684px] lg:w-[884px] mx-auto sm:pt-24 ">
+		<div class="p-6 border border-gray-300 sm:rounded-md">
+    {{ include('permission/_form.html.twig', {'button_label': 'Modifier le service'}) }}
+    </div>
+    </div>
 
-    {{ include('permission/_form.html.twig', {'button_label': 'Update'}) }}
+    <a href="{{ path('les_services') }}">back to list</a>
 
-    <a href="{{ path('app_permission_index') }}">back to list</a>
-
-    {{ include('permission/_delete_form.html.twig') }}
+    
 {% endblock %}

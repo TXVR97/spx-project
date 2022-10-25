@@ -1,11 +1,16 @@
 <?php
 
 namespace App\Controller;
-
 use App\Entity\Partner;
+use App\Entity\Structure;
 use App\Form\PartnerType;
+use App\Entity\Permission;
+use App\Form\StructureType;
 use App\Repository\PartnerRepository;
+use App\Repository\StructureRepository;
+use App\Repository\PermissionRepository;
 use Doctrine\ORM\EntityManagerInterface;
+use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -22,8 +27,10 @@ class DetailsController extends AbstractController
     }
 
     #[Route('/admin/details/{slug}', name: 'details')]
-    public function index($slug): Response
-    {
+    public function index($slug, StructureRepository $structureRepository, PermissionRepository $permissionrepo ): Response
+    {   
+    
+        $structures = $structureRepository->findAll();
         $partner = $this->entityManager->getRepository(Partner::class)->findOneBySlug($slug);
 
         if (!$partner){
@@ -32,7 +39,21 @@ class DetailsController extends AbstractController
 
         return $this->render('details/index.html.twig', [
             'partner' => $partner,
+            'structures' => $structures,            
         ]);
+    }
+
+    
+    #[Route('/admin/details/supprimer/{id}', name: 'structure_delete', methods: ['GET', 'POST'])]
+    
+    public function delete(EntityManagerInterface $manager, Structure $structure, int $id, StructureRepository $structureRepository) : Response 
+    {
+        $structure = $structureRepository->findOneBy(["id" => $id]);
+        $manager->remove($structure);
+        $manager->flush();
+
+        return $this-> redirectToRoute('app_admin');
+
     }
 
 
@@ -61,6 +82,34 @@ class DetailsController extends AbstractController
             'form' => $form->createView()
         ]);
     }
+
+  
+
+
+    #[Route('/admin/details/{slug}/ajout-structure', name: 'ajout_structure', methods: ['GET', 'POST'])]
+    public function add_structure(Request $request, EntityManagerInterface $manager ): Response
+    {
+        
+        
+        
+        $structure = new Structure();
+        $form_structure = $this->createForm(StructureType::class, $structure);
+        $form_structure->handleRequest($request);
+
+        if ($form_structure->isSubmitted() ) {
+            $structure->setCreatedAt(new \DateTimeImmutable());
+            
+            $manager->persist($structure);
+            $manager->flush();
+            return $this->redirectToRoute('app_admin');
+        }
+
+        return $this->render('structure/new_structure.html.twig', [
+            
+            'form_structure' => $form_structure->createView()
+        ]);
+    }
+    
 
 
     

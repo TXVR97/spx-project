@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\UserRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
@@ -55,6 +57,14 @@ class User
 
     #[ORM\ManyToOne(inversedBy: 'structure')]
     private ?Structure $structure = null;
+
+    #[ORM\OneToMany(mappedBy: 'user', targetEntity: Structure::class)]
+    private Collection $structures;
+
+    public function __construct()
+    {
+        $this->structures = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -153,6 +163,36 @@ class User
     public function setStructure(?Structure $structure): self
     {
         $this->structure = $structure;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Structure>
+     */
+    public function getStructures(): Collection
+    {
+        return $this->structures;
+    }
+
+    public function addStructure(Structure $structure): self
+    {
+        if (!$this->structures->contains($structure)) {
+            $this->structures->add($structure);
+            $structure->setUser($this);
+        }
+
+        return $this;
+    }
+
+    public function removeStructure(Structure $structure): self
+    {
+        if ($this->structures->removeElement($structure)) {
+            // set the owning side to null (unless already changed)
+            if ($structure->getUser() === $this) {
+                $structure->setUser(null);
+            }
+        }
 
         return $this;
     }

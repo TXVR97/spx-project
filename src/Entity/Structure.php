@@ -3,6 +3,7 @@
 namespace App\Entity;
 
 use App\Repository\StructureRepository;
+use Cocur\Slugify\Slugify;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
@@ -44,9 +45,24 @@ class Structure
     #[ORM\OneToMany(mappedBy: 'structure', targetEntity: User::class)]
     private Collection $structure;
 
+    #[ORM\ManyToOne(inversedBy: 'structures')]
+    private ?User $user = null;
+
+   
+
+    #[ORM\Column(length: 255)]
+    private ?string $slug = null;
+
+    #[ORM\OneToMany(mappedBy: 'service', targetEntity: Permission::class)]
+    private Collection $permissions;
+
+    
+
     public function __construct()
     {
         $this->structure = new ArrayCollection();
+        $this->permissions = new ArrayCollection();
+        
     }
 
     public function getId(): ?int
@@ -56,12 +72,16 @@ class Structure
 
     public function getName(): ?string
     {
+        
         return $this->name;
     }
 
     public function setName(string $name): self
     {
         $this->name = $name;
+        $slug = (new Slugify())->slugify($this->name); 
+        $this -> setSlug($slug);
+        
 
         return $this;
     }
@@ -132,4 +152,66 @@ class Structure
 
         return $this;
     }
+
+    public function getUser(): ?User
+    {
+        return $this->user;
+    }
+
+    public function setUser(?User $user): self
+    {
+        $this->user = $user;
+
+        return $this;
+    }
+
+    
+
+    public function getSlug(): ?string
+    {
+        return $this->slug;
+    }
+
+    public function setSlug(string $slug): self
+    {
+        $this->slug = $slug;
+
+        return $this;
+    }
+
+    public function __toString()
+    {
+        return $this->name;
+    }
+
+    /**
+     * @return Collection<int, Permission>
+     */
+    public function getPermissions(): Collection
+    {
+        return $this->permissions;
+    }
+
+    public function addPermission(Permission $permission): self
+    {
+        if (!$this->permissions->contains($permission)) {
+            $this->permissions->add($permission);
+            $permission->setService($this);
+        }
+
+        return $this;
+    }
+
+    public function removePermission(Permission $permission): self
+    {
+        if ($this->permissions->removeElement($permission)) {
+            // set the owning side to null (unless already changed)
+            if ($permission->getService() === $this) {
+                $permission->setService(null);
+            }
+        }
+
+        return $this;
+    }
+    
 }

@@ -1,0 +1,22 @@
+
+			{{ form_start(form_service) }}
+			<div class="grid grid-cols-6 gap-4 col-span-full lg:col-span-3">
+				<div class="col-span-full sm:col-span-3">					
+						{{ form_row(form_service.name,{
+                            widget_class: 'w-full rounded-md focus:ring focus:ring-opacity-75 focus:ring-indigo-400 dark:border-gray-700 dark:text-gray-900',
+                            label_class: 'text-sm'
+                        }) }}																	
+				</div>
+                <div class="col-span-full sm:col-span-3">
+				{{ form_row(form_service.service,{
+                            widget_class: 'w-full rounded-md focus:ring focus:ring-opacity-75 focus:ring-indigo-400 dark:border-gray-700 dark:text-gray-900',
+                            label_class: 'text-sm'
+                        }) }}
+                </div>
+                
+				
+			</div>
+            <div class="flex justify-center">
+			<input type="submit" class="transition duration-150 ease-in-out hover:bg-indigo-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-700 border bg-indigo-500 rounded text-white px-8 py-2 w-64  ml-2 text-sm mt-10 " value="Ajouter partenaire"></input>
+            </div>
+			{{ form_end(form_service) }}

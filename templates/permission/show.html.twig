@@ -1,0 +1,30 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Permission{% endblock %}
+
+{% block content %}
+    <h1>Permission</h1>
+    {% for services in permissions %}
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ services.id }}</td>
+            </tr>
+            <tr>
+                <th>Name</th>
+                <td>{{ services.name }}</td>
+            </tr>
+        </tbody>
+        
+    {% endfor %}
+    <a href="">
+								<button class="mx-2 my-2 bg-indigo-400 transition duration-150 ease-in-out focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-indigo-300 focus:ring-white hover:bg-indigo-600 rounded text-gray-100 px-6 py-2 text-sm">
+									<i class="fa fa-trash mr-2"></i>Supprimer</button>
+
+    
+
+    
+
+    
+{% endblock %}

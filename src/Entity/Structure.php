@@ -54,12 +54,16 @@ class Structure
     #[ORM\OneToMany(mappedBy: 'service', targetEntity: Permission::class,cascade: ['persist'] ,orphanRemoval: true)]
     private Collection $permissions;
 
+    #[ORM\Column]
+    private ?bool $status = null;
+
     
 
     public function __construct()
     {
         $this->structure = new ArrayCollection();
         $this->permissions = new ArrayCollection();
+       
         
     }
 
@@ -147,7 +151,7 @@ class Structure
                 $structure->setStructure(null);
             }
         }
-
+ 
         return $this;
     }
 
@@ -208,6 +212,18 @@ class Structure
                 $permission->setService(null);
             }
         }
+
+        return $this;
+    }
+
+    public function isStatus(): ?bool
+    {
+        return $this->status;
+    }
+
+    public function setStatus(bool $status): self
+    {
+        $this->status = $status;
 
         return $this;
     }

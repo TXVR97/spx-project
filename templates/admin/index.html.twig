@@ -66,7 +66,7 @@
 
 		<div class=" flex justify-center mb-10">
 			<a href="{{path('ajout_partneaire')}}">
-				<button type="button" class="  px-6 py-2 font-semibold rounded w-96  bg-indigo-500 text-indigo-100 transition duration-150 ease-in-out hover:bg-indigo-600 text-xs focus:outline-none focus:ring-2 focus:ring-offset-2  focus:ring-indigo-600">Ajouter Partenaire</button>
+				<button type="button" class="  px-6 py-2 font-semibold rounded w-96  bg-indigo-500 text-indigo-100 transition duration-150 ease-in-out hover:bg-indigo-600 text-xs focus:outline-none focus:ring-2 focus:ring-offset-2  focus:ring-indigo-600"><i class="fa fa-plus mr-2"></i>Partenaire</button>
 			</a>
 		</div>
 
@@ -80,18 +80,18 @@
 					<img class="object-cover object-center w-full h-56" src="https://images.unsplash.com/photo-1517841905240-472988babdf9?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=334&q=80" alt="avatar">
 
 					<div class="flex items-center px-6 py-3 bg-gray-900">
-						<div class="bg-red-700 rounded-full w-6 h-6"></div>
+						<div class="bg-red-700 rounded-full w-6 h-6 {{(partner.status == "Active") ? "bg-green-400" : "bg-red-700"}}"></div>
 
-						<a href="{{path('details', {'slug': partner.slug })}}" class="w-4">
+						<a href="{{path('details', {'slug': partner.slug }) }}" class="w-4">
 							<button type="button" class=" ml-48 px-6 py-2 font-semibold rounded w-32  bg-indigo-200 text-indigo-500 transition duration-150 ease-in-out hover:bg-indigo-100 text-xs focus:outline-none focus:ring-2 focus:ring-offset-2  focus:ring-indigo-300">Détails</button>
 						</a>
 					</div>
 
 					<div class="px-6 py-4">
 						<div class="flex justify-end ">
-							<button class="px-6 py-2 font-semibold rounded w-fit text-xs  bg-white transition duration-150 ease-in-out focus:outline-none ring-1 ring-indigo-400 focus:ring-2 focus:ring-offset-2 focus:ring-offset-indigo-700 focus:ring-white   text-indigo-700">
+							<a href="{{path('modification_partenaire', {'slug':partner.slug} )}}"><button class="px-6 py-2 font-semibold rounded w-fit text-xs  bg-white transition duration-150 ease-in-out focus:outline-none ring-1 ring-indigo-400 focus:ring-2 focus:ring-offset-2 focus:ring-offset-indigo-700 focus:ring-white   text-indigo-700">
 								<i class="fa fa-pen  "></i>
-							</button>
+							</button></a>
 						</div>
 						<h1 class="text-xl font-semibold text-gray-800">{{partner.name}}</h1>
 

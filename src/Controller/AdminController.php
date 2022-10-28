@@ -28,7 +28,7 @@ class AdminController extends AbstractController
         ]);
     }
 
-    #[Route('/admin/new', name: 'ajout_partneaire', methods: ['GET', 'POST'])]
+    #[Route('/admin/ajout-partenaire', name: 'ajout_partneaire', methods: ['GET', 'POST'])]
     public function new(Request $request, EntityManagerInterface $manager): Response
     {
 

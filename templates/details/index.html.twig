@@ -11,16 +11,13 @@
 		{# Block Partenaire #}
 		<div class="my-6 lg:my-12 container px-6 mx-auto flex flex-col lg:flex-row items-start lg:items-center justify-between pb-4 border-b border-gray-300">
 			<div>
-				<h1 class="text-3xl  font-bold underline leading-tight text-gray-800">{{partner.name}}</h1>
+				<h1 class="text-3xl uppercase font-bold underline leading-tight text-gray-800">{{partner.name}}</h1>
 				<ul class="flex flex-col md:flex-row items-start md:items-center text-gray-600 text-sm mt-3">
-					<li class="flex items-center mr-3 mt-3 md:mt-0">
-
-						<label for="activeornot" class="bg-gray-200  cursor-pointer relative w-10 h-5 rounded-full">
-							<input type="checkbox" id="activeornot" class="sr-only peer">
-							<span class="w-2/5 h-4/5 bg-red-700 opacity-20 shadow-sm shadow-gray-600 absolute rounded-full left-1 top-[2px] peer-checked:bg-green-400 peer-checked:opacity-100 peer-checked:left-5 transition-all duration-300 group-hover:after:translate-x-1 "></span>
-						</label>
-
-						<span class="ml-2">Status</span>
+					<li class="flex items-center mr-6 mt-3 md:mt-0">
+					
+						<span class="ml-2">Status: </span>
+						<span  class="ml-2 bg-red-700 rounded-full w-6 h-6 {{(partner.status == "Active") ? "bg-green-400" : "bg-red-700"}}">  </span>
+						
 					</li>
 					<li class="flex items-center mr-3 mt-3 md:mt-0">
 						<span class="mr-2">
@@ -40,28 +37,28 @@
 				</ul>
 			</div>
 			<div class="mt-6 lg:mt-0">
-				<button class="mx-2 my-2 bg-white transition duration-150 ease-in-out focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-indigo-700 focus:ring-white hover:bg-gray-100 rounded text-indigo-700 px-6 py-2 text-sm">
+				<button class="mx-2 font-medium my-2 bg-white transition duration-150 ease-in-out focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-indigo-700 focus:ring-white hover:bg-gray-100 rounded text-indigo-700 px-6 py-2 text-sm">
 					<i class="fa fa-trash mr-2"></i>Supprimer</button>
 				<a href="{{path('modification_partenaire', {'slug':partner.slug} )}}">
-					<button class="mx-2 my-2 bg-white transition duration-150 ease-in-out focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-indigo-700 focus:ring-white hover:bg-gray-100 rounded text-indigo-700 px-6 py-2 text-sm">
+					<button class="mx-2 my-2 font-medium bg-white transition duration-150 ease-in-out focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-indigo-700 focus:ring-white hover:bg-gray-100 rounded text-indigo-700 px-6 py-2 text-sm">
 						<i class="fa fa-pen mr-2"></i>Modifier</button>
 				</a>
 				<a href="{{path('ajout_structure', {'slug':partner.slug})}}">
-				<button class="transition duration-150 ease-in-out hover:bg-indigo-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-700 border bg-indigo-500 rounded text-white px-8 py-2 w-64  ml-2 text-sm">
+				<button class="transition font-medium duration-150 ease-in-out hover:bg-indigo-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-700 border bg-indigo-500 rounded text-white px-8 py-2 w-64  ml-2 text-sm">
 					<i class="fa fa-building mr-4"></i>Ajouter Structure</button>
 					</a>
 			</div>
 		</div>
 		<div class="container mx-auto px-6">
 			<div class="w-full h-content rounded   border-gray-300 bg-gray-100 shadow-inner shadow-gray-400">
-				<div class="lg:grid-cols-2 grid">
+				<div class="lg:grid-cols-2 font-medium tracking-wide grid">
 
 					<div class="flex m-5 items-center rounded shadow-md overflow-hidden max-w-xl relative hover:-translate-y-1 hover:scale-100 duration-200">
 						<div class="self-stretch flex items-center px-3 flex-shrink-0">
 							<i class="fa fa-comment-dots text-2xl text-indigo-600"></i>
 						</div>
 						<div class="p-4 flex-1">
-							<p class="text-sm dark:text-gray-400">{{partner.description}}</p>
+							<p class="text-xs sm:text-sm dark:text-gray-400">{{partner.description}}</p>
 						</div>
 					</div>
 
@@ -70,7 +67,7 @@
 							<i class="fa fa-user-tie text-2xl text-indigo-600"></i>
 						</div>
 						<div class="p-4 flex-1">
-							<p class="text-sm dark:text-gray-400">{{partner.ManageContact}}</p>
+							<p class="text-xs sm:text-sm dark:text-gray-400">{{partner.ManageContact}}</p>
 						</div>
 					</div>
 
@@ -79,7 +76,7 @@
 							<i class="fa fa-briefcase text-2xl text-indigo-600"></i>
 						</div>
 						<div class="p-4 flex-1">
-							<p class="text-sm dark:text-gray-400">{{partner.ComContact}}</p>
+							<p class="text-xs sm:text-sm dark:text-gray-400">{{partner.ComContact}}</p>
 						</div>
 					</div>
 
@@ -88,7 +85,7 @@
 							<i class="fa fa-at text-2xl text-indigo-600"></i>
 						</div>
 						<div class="p-4 flex-1">
-							<p class="text-sm dark:text-gray-400">{{partner.website}}</p>
+							<p class="text-xs sm:text-sm dark:text-gray-400">{{partner.website}}</p>
 						</div>
 					</div>
 
@@ -112,15 +109,15 @@
 					<div class="grid grid-cols-1 place-items-center mt-5">
 
 						<p>Status</p>
-						<label for="SActiveornote" class="bg-gray-200  cursor-pointer relative w-10 h-5 rounded-full">
-							<input type="checkbox" id="SActiveornote" class="sr-only peer">
-							<span class="w-2/5 h-4/5 bg-red-700 opacity-20 shadow-sm shadow-gray-600 absolute rounded-full left-1 top-[2px] peer-checked:bg-green-400 peer-checked:opacity-100 peer-checked:left-5 transition-all duration-300 group-hover:after:translate-x-1 "></span>
-						</label>
+						<span  class=" bg-red-700 rounded-full w-12 h-3 {{(structure.status == "Active") ? "bg-green-400" : "bg-red-700"}}">  </span>
 						<p class="mt-[35px]">
-							<i class="fa fa-id-card mr-2"></i>
-							<span class="font-bold">ID
-								{{structure.id}}</span>
+							<i class="fa fa-id-card "></i>
+							<span class="font-bold">ID {{structure.id}}
+								
+								
+								</span>
 						</p>
+						
 
 					</div>
 					<div class="p-6">
@@ -130,7 +127,7 @@
 							<div class="w-24 ">
 								<span class="font-bold underline">Adresse</span>:</div>
 							<div class="mr-6">
-								<p>{{structure.adress}}</p>
+								<p class="tracking-wide ">{{structure.adress}}</p>
 
 							</div>
 
@@ -138,15 +135,15 @@
 							<div class="w-24">
 								<span class="font-bold underline">Manager</span>:</div>
 							<div class="mr-6">
-								<p>{{structure.manager}}</p>
+								<p class="tracking-wide ">{{structure.manager}}</p>
 							</div>
 
 
 							<a href="{{path('structure_delete', {'id':structure.id} )}}">
-								<button class="mx-2 my-2 bg-indigo-400 transition duration-150 ease-in-out focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-indigo-300 focus:ring-white hover:bg-indigo-600 rounded text-gray-100 px-6 py-2 text-sm">
+								<button class="mx-2 my-2 font-medium bg-indigo-400 transition duration-150 ease-in-out focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-indigo-300 focus:ring-white hover:bg-indigo-600 rounded text-gray-100 px-6 py-2 text-sm">
 									<i class="fa fa-trash mr-2"></i>Supprimer</button></a>
 									<a href="{{path('modification_structure', {'slug':structure.slug} )}}">
-								<button class="mx-2 my-2 bg-indigo-400 transition duration-150 ease-in-out focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-indigo-300 focus:ring-white hover:bg-indigo-600 rounded text-gray-100 px-6 py-2 text-sm">
+								<button class="mx-2 font-medium my-2 bg-indigo-400 transition duration-150 ease-in-out focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-indigo-300 focus:ring-white hover:bg-indigo-600 rounded text-gray-100 px-6 py-2 text-sm">
 									<i class="fa fa-pen mr-2"></i>Modifier</button></a>
 							</a>
 						</div>
@@ -157,10 +154,10 @@
 							<h1 class="text-lg font-medium text-gray-700 capitalize lg:text-xl ">Services:</h1>
 
 							<div class="mt-8 space-y-4">
-								<div class="flex items-center">
+								<div class="grid grid-cols-2 gap-4">
 
 									{% for perm in structure.permissions %}
-										<p>-> {{perm.name}}</p>
+										<span class="bg-white ring-2 ring-indigo-400 rounded-lg px-3 py-1 text-indigo-500 font-semibold text-xs whitespace-pre-line  ">{{perm.name}}</span>
 									{% endfor %}
 
 
@@ -177,16 +174,6 @@
 			{% endfor %}
 
 		</div>
-		<div class="max-w-sm mx-auto border-2 bg-gray-100 border-indigo-400 rounded-lg md:mx-4 text-gray-500 ">
-			<div class="h-[815px] w-[382.78px] flex justify-center items-center ">
-				<div class=" ">
-					<a href="{{path('ajout_structure', {'slug':partner.slug})}}">
-						<button class="p-0 w-16 h-16 ring-2 shadow-inner shadow-gray-300 ring-indigo-200 rounded-full bg-indigo-500 text-indigo-100 transition duration-150 ease-in-out hover:bg-indigo-600 text-xs focus:outline-none focus:ring-2 focus:ring-offset-2  focus:ring-indigo-600">
-							<i class="fa fa-plus text-gray-100"></i>
-						</button>
-					</a>
-				</div>
-			</div>
-		</div>
+		
 	</div>
 {% endblock %}

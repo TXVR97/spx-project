@@ -9,6 +9,7 @@ use App\Form\StructureType;
 use App\Repository\PartnerRepository;
 use App\Repository\StructureRepository;
 use App\Repository\PermissionRepository;
+use App\Repository\UserRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Component\HttpFoundation\Request;
@@ -27,9 +28,9 @@ class DetailsController extends AbstractController
     }
 
     #[Route('/admin/details/{slug}', name: 'details')]
-    public function index($slug, StructureRepository $structureRepository, PermissionRepository $permissionrepo ): Response
+    public function index($slug, StructureRepository $structureRepository): Response
     {   
-    
+        
         $structures = $structureRepository->findAll();
         $partner = $this->entityManager->getRepository(Partner::class)->findOneBySlug($slug);
 
@@ -39,7 +40,8 @@ class DetailsController extends AbstractController
 
         return $this->render('details/index.html.twig', [
             'partner' => $partner,
-            'structures' => $structures,            
+            'structures' => $structures,
+                       
         ]);
     }
 

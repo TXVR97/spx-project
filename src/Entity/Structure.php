@@ -42,7 +42,7 @@ class Structure
     #[ORM\Column(type: Types::DATETIME_MUTABLE)]
     private ?\DateTimeInterface $createdAt = null;
 
-    #[ORM\OneToMany(mappedBy: 'structure', targetEntity: User::class)]
+    #[ORM\OneToMany(mappedBy: 'structure', targetEntity: User::class, cascade: ['persist'] ,orphanRemoval: true)]
     private Collection $structure;
 
 
@@ -56,6 +56,9 @@ class Structure
 
     #[ORM\Column]
     private ?bool $status = null;
+
+    #[ORM\ManyToOne(inversedBy: 'mystructure')]
+    private ?Partner $partner = null;
 
     
 
@@ -224,6 +227,18 @@ class Structure
     public function setStatus(bool $status): self
     {
         $this->status = $status;
+
+        return $this;
+    }
+
+    public function getPartner(): ?Partner
+    {
+        return $this->partner;
+    }
+
+    public function setPartner(?Partner $partner): self
+    {
+        $this->partner = $partner;
 
         return $this;
     }

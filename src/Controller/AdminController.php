@@ -26,6 +26,8 @@ class AdminController extends AbstractController
         return $this->render('admin/index.html.twig', [
             'partners' => $partners,
         ]);
+
+        
     }
 
     #[Route('/admin/ajout-partenaire', name: 'ajout_partneaire', methods: ['GET', 'POST'])]

@@ -80,10 +80,14 @@ class Partner
     #[ORM\Column]
     private ?bool $status = null;
 
+    #[ORM\OneToMany(mappedBy: 'partner', targetEntity: Structure::class)]
+    private Collection $mystructure;
+
 
     public function __construct()
     {
         $this->user = new ArrayCollection();
+        $this->mystructure = new ArrayCollection();
         
     }
 
@@ -246,6 +250,36 @@ class Partner
     public function setStatus(bool $status): self
     {
         $this->status = $status;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Structure>
+     */
+    public function getMystructure(): Collection
+    {
+        return $this->mystructure;
+    }
+
+    public function addMystructure(Structure $mystructure): self
+    {
+        if (!$this->mystructure->contains($mystructure)) {
+            $this->mystructure->add($mystructure);
+            $mystructure->setPartner($this);
+        }
+
+        return $this;
+    }
+
+    public function removeMystructure(Structure $mystructure): self
+    {
+        if ($this->mystructure->removeElement($mystructure)) {
+            // set the owning side to null (unless already changed)
+            if ($mystructure->getPartner() === $this) {
+                $mystructure->setPartner(null);
+            }
+        }
 
         return $this;
     }

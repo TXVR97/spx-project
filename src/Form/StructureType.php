@@ -45,6 +45,7 @@ class StructureType extends AbstractType
                 "required" => true
             ])
             ->add('status')
+            ->add('partner')
             
             
             

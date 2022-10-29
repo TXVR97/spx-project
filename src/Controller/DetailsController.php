@@ -31,8 +31,9 @@ class DetailsController extends AbstractController
     public function index($slug, StructureRepository $structureRepository): Response
     {   
         
-        $structures = $structureRepository->findAll();
+        
         $partner = $this->entityManager->getRepository(Partner::class)->findOneBySlug($slug);
+        $structures = $structureRepository->findAll();
 
         if (!$partner){
             return $this-> redirectToRoute('app_admin');

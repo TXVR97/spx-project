@@ -1,0 +1,86 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Mon espace
+{% endblock %}
+
+{% block content %}
+
+	{# Block structure #}
+
+	<div class="flex-1 md:mt-36 mt-24 xl:mx-8">
+
+		<div class="  md:-mx-4 md:flex md:items-center md:justify-center md:space-y-0 xl:mt-0 ">
+
+			
+
+
+				<div class="max-w-sm mx-auto border-2 bg-gray-100 border-indigo-400 rounded-lg md:mx-4 text-gray-500 ">
+
+					<span class="relative left-[51px]  top-0 px-24 pt-[2px] pb-2 font-medium rounded-b-lg bg-indigo-400 text-gray-900">{{app.user.structure.name}}</span>
+
+					<div class="grid grid-cols-1 place-items-center mt-5">
+
+						<p>Status</p>
+						<span class=" bg-red-700 rounded-full w-12 h-3 {{(app.user.structure.status == " active") ? " bg-green-400" : " bg-red-700"}}"></span>
+						<p class="mt-[35px]">
+							<i class="fa fa-id-card "></i>
+							<span class="font-bold">ID
+								{{app.user.structure.id}}
+
+
+							</span>
+						</p>
+
+
+					</div>
+					<div class="p-6">
+
+						<div class="mt-4 mb-10 text-gray-500 grid grid-cols-2 gap-y-10 ">
+
+							<div class="w-24 ">
+								<span class="font-bold underline">Adresse</span>:</div>
+							<div class="mr-6">
+								<p class="tracking-wide ">{{app.user.structure.adress}}</p>
+
+							</div>
+
+
+							<div class="w-24">
+								<span class="font-bold underline">Manager</span>:</div>
+							<div class="mr-6">
+								<p class="tracking-wide ">{{app.user.structure.manager}}</p>
+							</div>
+
+
+						</div>
+
+						<hr class="border-gray-200 dark:border-gray-700">
+
+						<div class="p-6">
+							<h1 class="text-lg font-medium text-gray-700 capitalize lg:text-xl ">Services:</h1>
+
+							<div class="mt-8 space-y-4">
+								<div class="grid grid-cols-2 gap-4">
+
+									{% for perm in app.user.structure.permissions %}
+										<span class="bg-white ring-2 ring-indigo-400 rounded-lg px-3 py-1 text-indigo-500 font-semibold text-xs whitespace-pre-line  ">{{perm.name}}</span>
+									{% endfor %}
+
+
+								</div>
+
+
+							</div>
+
+						</div>
+
+					</div>
+
+				</div>
+			
+
+		</div>
+
+	</div>
+
+{% endblock %}

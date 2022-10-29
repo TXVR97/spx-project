@@ -2,17 +2,31 @@
 
 namespace App\Controller;
 
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use App\Entity\Partner;
+use App\Repository\PartnerRepository;
+use App\Repository\StructureRepository;
+use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 class UserPageController extends AbstractController
 {
-    #[Route('/user/page', name: 'app_user_page')]
-    public function index(): Response
-    {
-        return $this->render('user_page/index.html.twig', [
-            'controller_name' => 'UserPageController',
+
+    
+
+
+    #[Route('/user', name: 'userpage', methods: ['GET'])]
+    public function index( StructureRepository $structureRepository): Response
+    {   
+        $userstructure = $structureRepository->findAll();
+        return $this->render ('user_page/index2.html.twig', [
+            'userstructure' => $userstructure
+
         ]);
+
+        
     }
+
+     
 }

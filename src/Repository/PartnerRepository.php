@@ -3,8 +3,10 @@
 namespace App\Repository;
 
 use App\Entity\Partner;
-use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
+use Doctrine\ORM\Query;
+use App\Entity\Partfilter;
 use Doctrine\Persistence\ManagerRegistry;
+use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 
 /**
  * @extends ServiceEntityRepository<Partner>
@@ -19,6 +21,17 @@ class PartnerRepository extends ServiceEntityRepository
     public function __construct(ManagerRegistry $registry)
     {
         parent::__construct($registry, Partner::class);
+    }
+
+    public function findAllWithPagination(Partfilter $partfilter) : Query{
+        $req = $this->createQueryBuilder('v');
+        if ($partfilter->getPartName()){
+            $req = $req->andWhere('v.name = :name')
+            ->setParameter(':name', $partfilter->getPartName());
+        }
+
+        return $req->getQuery();
+
     }
 
     public function save(Partner $entity, bool $flush = false): void

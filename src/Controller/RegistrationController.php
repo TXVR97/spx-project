@@ -16,17 +16,11 @@ use Symfony\Component\Mime\Address;
 use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Security\Http\Authentication\UserAuthenticatorInterface;
-use Symfony\Contracts\Translation\TranslatorInterface;
-use SymfonyCasts\Bundle\VerifyEmail\Exception\VerifyEmailExceptionInterface;
+
 
 class RegistrationController extends AbstractController
 {
-    private EmailVerifier $emailVerifier;
-
-    public function __construct(EmailVerifier $emailVerifier)
-    {
-        $this->emailVerifier = $emailVerifier;
-    }
+    
 
     #[Route('/register', name: 'app_register')]
     public function register(Request $request, UserPasswordHasherInterface $userPasswordHasher, UserAuthenticatorInterface $userAuthenticator, UserAuthenticator $authenticator, EntityManagerInterface $entityManager): Response
@@ -69,33 +63,26 @@ class RegistrationController extends AbstractController
         ]);
     }
 
-    #[Route('/verify/email', name: 'app_verify_email')]
-    public function verifyUserEmail(Request $request, TranslatorInterface $translator, UserRepository $userRepository): Response
+    
+
+    #[Route('/register/les-utilisateurs', name: 'les_utilisateurs', methods: ['GET', 'POST'])]
+    public function service(UserRepository $userRepository): Response
     {
-        $id = $request->get('id');
+        $users = $userRepository->findAll();
+        return $this->render('registration/show.html.twig', [
+            'users' => $users,
+        ]);
+    }
 
-        if (null === $id) {
-            return $this->redirectToRoute('app_register');
-        }
+    #[Route('/register/les-utilisateurs/supprimer/{id}', name: 'delete_user', methods: ['GET', 'POST'])]
+    
+    public function deleteuser(EntityManagerInterface $manager, User $user, int $id, UserRepository $userRepository) : Response 
+    {
+        $user = $userRepository->findOneBy(["id" => $id]);
+        $manager->remove($user);
+        $manager->flush();
 
-        $user = $userRepository->find($id);
+        return $this-> redirectToRoute('les_utilisateurs');
 
-        if (null === $user) {
-            return $this->redirectToRoute('app_register');
-        }
-
-        // validate email confirmation link, sets User::isVerified=true and persists
-        try {
-            $this->emailVerifier->handleEmailConfirmation($request, $user);
-        } catch (VerifyEmailExceptionInterface $exception) {
-            $this->addFlash('verify_email_error', $translator->trans($exception->getReason(), [], 'VerifyEmailBundle'));
-
-            return $this->redirectToRoute('app_register');
-        }
-
-        // @TODO Change the redirect on success and handle or remove the flash message in your templates
-        $this->addFlash('success', 'Your email address has been verified.');
-
-        return $this->redirectToRoute('app_user_page');
     }
 }

@@ -4,12 +4,11 @@ namespace App\Controller;
 
 use App\Entity\Partner;
 use App\Form\PartnerType;
-
-use App\Entity\Permission;
-use App\Form\PermissionType;
+use App\Entity\Partfilter;
+use App\Form\FilterPartnerType;
 use App\Repository\PartnerRepository;
-use App\Repository\PermissionRepository;
 use Doctrine\ORM\EntityManagerInterface;
+use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -20,11 +19,23 @@ class AdminController extends AbstractController
 
 
     #[Route('/admin', name: 'app_admin')]
-    public function index(PartnerRepository $partnerRepository): Response
+    public function index(PartnerRepository $partnerRepository, Request $request, PaginatorInterface $paginatorInterface): Response
     {
-        $partners = $partnerRepository->findAll();
+        $partfilter = new PartFilter();
+
+        $form_filter = $this->createForm(FilterPartnerType::class, $partfilter);
+        $form_filter->handleRequest($request);
+
+    
+
+        $partners = $paginatorInterface->paginate(
+            $partnerRepository->findAllWithPagination($partfilter),
+            $request->query->getInt('page', 1), /*page number*/
+            6 /*limit per page*/
+        );
         return $this->render('admin/index.html.twig', [
             'partners' => $partners,
+            'form_filter' => $form_filter->createView()
         ]);
 
         

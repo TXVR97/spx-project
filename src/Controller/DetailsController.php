@@ -4,14 +4,14 @@ namespace App\Controller;
 use App\Entity\Partner;
 use App\Entity\Structure;
 use App\Form\PartnerType;
-use App\Entity\Permission;
+
 use App\Form\StructureType;
 use App\Repository\PartnerRepository;
 use App\Repository\StructureRepository;
-use App\Repository\PermissionRepository;
-use App\Repository\UserRepository;
+
+
 use Doctrine\ORM\EntityManagerInterface;
-use Doctrine\Persistence\ManagerRegistry;
+
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;

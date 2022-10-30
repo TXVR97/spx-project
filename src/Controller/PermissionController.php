@@ -15,7 +15,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 class PermissionController extends AbstractController
 {   
 
-    #[Route('/admin/ajout-service', name: 'ajout_service', methods: ['GET', 'POST'])]
+    #[Route('/ajout-service', name: 'ajout_service', methods: ['GET', 'POST'])]
     public function ajout_permission(Request $request, EntityManagerInterface $manager): Response
     {
 
@@ -58,7 +58,7 @@ class PermissionController extends AbstractController
     }
 
 
-    #[Route('/ajout-service/services/{id}', name: 'modification_service', methods: ['GET', 'POST'])]
+    #[Route('/admin/ajout-service/services/{id}', name: 'modification_service', methods: ['GET', 'POST'])]
     public function editservice( Permission $permission,Request $request,PermissionRepository $permissionRepository, EntityManagerInterface $entityManager, int $id ): Response
     {
         
@@ -85,38 +85,6 @@ class PermissionController extends AbstractController
     }
 
 
-
-
-
-
-
-    
-
-    #[Route('/{id}', name: 'app_permission_show', methods: ['GET'])]
-    public function show(Permission $permission): Response
-    {
-        return $this->render('permission/show.html.twig', [
-            'permission' => $permission,
-        ]);
-    }
-
-    #[Route('/{id}/edit', name: 'app_permission_edit', methods: ['GET', 'POST'])]
-    public function edit(Request $request, Permission $permission, PermissionRepository $permissionRepository): Response
-    {
-        $form = $this->createForm(PermissionType::class, $permission);
-        $form->handleRequest($request);
-
-        if ($form->isSubmitted() && $form->isValid()) {
-            $permissionRepository->save($permission, true);
-
-            return $this->redirectToRoute('app_permission_index', [], Response::HTTP_SEE_OTHER);
-        }
-
-        return $this->renderForm('permission/edit.html.twig', [
-            'permission' => $permission,
-            'form' => $form,
-        ]);
-    }
 
     
 }

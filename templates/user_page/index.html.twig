@@ -1,171 +1,27 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Mon espace
-{% endblock %}
+{% block title %}Mon espace{% endblock %}
+
 
 {% block content %}
 
-	{% for test in app.user.partner %}
+	{% if app.user.partner  and app.user.structure == null  %}
+		{% include "user_page/partner.html.twig" %}
+	{% endif %}
 
-		<span class="mx-4 text-gray-700 dark:text-gray-300">{{test.name}}</span>
-	{% endfor %}
+	{% if app.user.partner == null  and app.user.structure  %}
+		{% include 'user_page/structure.html.twig' %}
+	{% endif %}
 
-	{% for appuser in app.user %}
-		<div
-			class="2xl:container 2xl:mx-auto lg:py-16 lg:px-20 md:py-12 md:px-6 py-9 px-4 mt-24 mx-6 bg-indigo-300 rounded-2xl shadow-inner shadow-indigo-400 relative z-2">
-			{# Block Partenaire #}
-			<div class="my-6 lg:my-12 container px-6 mx-auto flex flex-col lg:flex-row items-start lg:items-center justify-between pb-4 border-b border-gray-300">
-				<div>
-					<h1 class="text-3xl uppercase font-bold underline leading-tight text-gray-800">{{appuser.partner}}</h1>
-					<ul class="flex flex-col md:flex-row items-start md:items-center text-gray-600 text-sm mt-3">
-						<li class="flex items-center mr-6 mt-3 md:mt-0">
-
-							<span class="ml-2">Status:
-							</span>
-							<span class="ml-2 bg-red-700 rounded-full w-6 h-6 {{(appuser.partner.status == " active") ? " bg-green-400" : " bg-red-700"}}"></span>
-
-						</li>
-						<li class="flex items-center mr-3 mt-3 md:mt-0">
-							<span class="mr-2">
-								<i class="fa fa-id-card"></i>
-							</span>
-							<span class="font-bold">
-								ID
-								{{appuser.partner.id}}</span>
-						</li>
-						<li class="flex items-center mt-3 md:mt-0">
-							<span class="mr-2">
-								<i class="fa fa-calendar-plus"></i>
-							</span>
-							<span>Créé le
-								{{appuser.partner.CreatedAt | date ('d-m-Y')}}</span>
-						</li>
-					</ul>
-				</div>
-
-			</div>
-			<div class="container mx-auto px-6">
-				<div class="w-full h-content rounded   border-gray-300 bg-gray-100 shadow-inner shadow-gray-400">
-					<div class="lg:grid-cols-2 font-medium tracking-wide grid">
-
-						<div class="flex m-5 items-center rounded shadow-md overflow-hidden max-w-xl relative hover:-translate-y-1 hover:scale-100 duration-200">
-							<div class="self-stretch flex items-center px-3 flex-shrink-0">
-								<i class="fa fa-comment-dots text-2xl text-indigo-600"></i>
-							</div>
-							<div class="p-4 flex-1">
-								<p class="text-xs sm:text-sm dark:text-gray-400">{{appuser.partner.description}}</p>
-							</div>
-						</div>
-
-						<div class="flex m-5 items-center rounded shadow-md overflow-hidden max-w-xl relative hover:-translate-y-1 hover:scale-100 duration-200">
-							<div class="self-stretch flex items-center px-3 flex-shrink-0">
-								<i class="fa fa-user-tie text-2xl text-indigo-600"></i>
-							</div>
-							<div class="p-4 flex-1">
-								<p class="text-xs sm:text-sm dark:text-gray-400">{{appuser.partner.ManageContact}}</p>
-							</div>
-						</div>
-
-						<div class="flex m-5 items-center rounded shadow-md overflow-hidden max-w-xl relative hover:-translate-y-1 hover:scale-100 duration-200">
-							<div class="self-stretch flex items-center px-3 flex-shrink-0">
-								<i class="fa fa-briefcase text-2xl text-indigo-600"></i>
-							</div>
-							<div class="p-4 flex-1">
-								<p class="text-xs sm:text-sm dark:text-gray-400">{{appuser.partner.ComContact}}</p>
-							</div>
-						</div>
-
-						<div class="flex m-5 items-center rounded shadow-md overflow-hidden max-w-xl relative hover:-translate-y-1 hover:scale-100 duration-200">
-							<div class="self-stretch flex items-center px-3 flex-shrink-0">
-								<i class="fa fa-at text-2xl text-indigo-600"></i>
-							</div>
-							<div class="p-4 flex-1">
-								<p class="text-xs sm:text-sm dark:text-gray-400">{{appuser.partner.website}}</p>
-							</div>
-						</div>
-
-					</div>
-				</div>
-			</div>
-		</div>
-	{% endfor %}
-
-	{# Block structure #}
-
-	<div class="flex-1 xl:mx-8">
-
-		<div class="  space-y-8 md:-mx-4 md:flex md:items-center md:justify-center md:space-y-0 xl:mt-0 relative bottom-6 z-3">
-
-			{% for mystructure in app.user.structure %}
-
-
-				<div class="max-w-sm mx-auto border-2 bg-gray-100 border-indigo-400 rounded-lg md:mx-4 text-gray-500 ">
-
-					<span class="relative left-[51px]  top-0 px-24 pt-[2px] pb-2 font-medium rounded-b-lg bg-indigo-400 text-gray-900">{{mystructure.name}}</span>
-
-					<div class="grid grid-cols-1 place-items-center mt-5">
-
-						<p>Status</p>
-						<span class=" bg-red-700 rounded-full w-12 h-3 {{(mystructure.status == " active") ? " bg-green-400" : " bg-red-700"}}"></span>
-						<p class="mt-[35px]">
-							<i class="fa fa-id-card "></i>
-							<span class="font-bold">ID
-								{{mystructure.id}}
-
-
-							</span>
-						</p>
-
-
-					</div>
-					<div class="p-6">
-
-						<div class="mt-4 mb-10 text-gray-500 grid grid-cols-2 gap-y-10 ">
-
-							<div class="w-24 ">
-								<span class="font-bold underline">Adresse</span>:</div>
-							<div class="mr-6">
-								<p class="tracking-wide ">{{mystructure.adress}}</p>
-
-							</div>
-
-
-							<div class="w-24">
-								<span class="font-bold underline">Manager</span>:</div>
-							<div class="mr-6">
-								<p class="tracking-wide ">{{mystructure.manager}}</p>
-							</div>
-
-
-						</div>
-
-						<hr class="border-gray-200 dark:border-gray-700">
-
-						<div class="p-6">
-							<h1 class="text-lg font-medium text-gray-700 capitalize lg:text-xl ">Services:</h1>
-
-							<div class="mt-8 space-y-4">
-								<div class="grid grid-cols-2 gap-4">
-
-									{% for perm in mystructure.permissions %}
-										<span class="bg-white ring-2 ring-indigo-400 rounded-lg px-3 py-1 text-indigo-500 font-semibold text-xs whitespace-pre-line  ">{{perm.name}}</span>
-									{% endfor %}
-
-
-								</div>
-
-
-							</div>
-
-						</div>
-
-					</div>
-
-				</div>
-			{% endfor %}
-
-		</div>
-
-	</div>
+	{% if app.user.partner  and app.user.structure  %}
+		{% include "user_page/partner.html.twig" %}
+		{% include 'user_page/structure.html.twig' %}
+	{% endif %}
 
 {% endblock %}
+
+
+
+	
+
+	

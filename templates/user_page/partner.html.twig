@@ -1,0 +1,84 @@
+{% block content %}
+	
+
+		<div
+			class="2xl:container 2xl:mx-auto lg:py-16 lg:px-20 md:py-12 md:px-6 py-9 px-4 mt-24 mx-6 bg-indigo-300 rounded-2xl shadow-inner shadow-indigo-400 relative z-2">
+			{# Block Partenaire #}
+			<div class="my-6 lg:my-12 container px-6 mx-auto flex flex-col lg:flex-row items-start lg:items-center justify-between pb-4 border-b border-gray-300">
+				<div>
+					<h1 class="text-3xl uppercase font-bold underline leading-tight text-gray-800">{{app.user.partner}}</h1>
+					<ul class="flex flex-col md:flex-row items-start md:items-center text-gray-600 text-sm mt-3">
+						<li class="flex items-center mr-6 mt-3 md:mt-0">
+
+							<span class="ml-2">Status:
+							</span>
+							<span class="ml-2 bg-red-700 rounded-full w-6 h-6 {{(app.user.partner.status == " active") ? " bg-green-400" : " bg-red-700"}}"></span>
+
+						</li>
+						<li class="flex items-center mr-3 mt-3 md:mt-0">
+							<span class="mr-2">
+								<i class="fa fa-id-card"></i>
+							</span>
+							<span class="font-bold">
+								ID
+								{{app.user.partner.id}}</span>
+						</li>
+						<li class="flex items-center mt-3 md:mt-0">
+							<span class="mr-2">
+								<i class="fa fa-calendar-plus"></i>
+							</span>
+							<span>Créé le
+								{{app.user.partner.CreatedAt | date ('d-m-Y')}}</span>
+						</li>
+					</ul>
+				</div>
+
+			</div>
+			<div class="container mx-auto px-6">
+				<div class="w-full h-content rounded   border-gray-300 bg-gray-100 shadow-inner shadow-gray-400">
+					<div class="lg:grid-cols-2 font-medium tracking-wide grid">
+
+						<div class="flex m-5 items-center rounded shadow-md overflow-hidden max-w-xl relative hover:-translate-y-1 hover:scale-100 duration-200">
+							<div class="self-stretch flex items-center px-3 flex-shrink-0">
+								<i class="fa fa-comment-dots text-2xl text-indigo-600"></i>
+							</div>
+							<div class="p-4 flex-1">
+								<p class="text-xs sm:text-sm dark:text-gray-400">{{app.user.partner.description}}</p>
+							</div>
+						</div>
+
+						<div class="flex m-5 items-center rounded shadow-md overflow-hidden max-w-xl relative hover:-translate-y-1 hover:scale-100 duration-200">
+							<div class="self-stretch flex items-center px-3 flex-shrink-0">
+								<i class="fa fa-user-tie text-2xl text-indigo-600"></i>
+							</div>
+							<div class="p-4 flex-1">
+								<p class="text-xs sm:text-sm dark:text-gray-400">{{app.user.partner.ManageContact}}</p>
+							</div>
+						</div>
+
+						<div class="flex m-5 items-center rounded shadow-md overflow-hidden max-w-xl relative hover:-translate-y-1 hover:scale-100 duration-200">
+							<div class="self-stretch flex items-center px-3 flex-shrink-0">
+								<i class="fa fa-briefcase text-2xl text-indigo-600"></i>
+							</div>
+							<div class="p-4 flex-1">
+								<p class="text-xs sm:text-sm dark:text-gray-400">{{app.user.partner.ComContact}}</p>
+							</div>
+						</div>
+
+						<div class="flex m-5 items-center rounded shadow-md overflow-hidden max-w-xl relative hover:-translate-y-1 hover:scale-100 duration-200">
+							<div class="self-stretch flex items-center px-3 flex-shrink-0">
+								<i class="fa fa-at text-2xl text-indigo-600"></i>
+							</div>
+							<div class="p-4 flex-1">
+								<p class="text-xs sm:text-sm dark:text-gray-400">{{app.user.partner.website}}</p>
+							</div>
+						</div>
+
+					</div>
+				</div>
+			</div>
+		</div>
+	
+
+
+{% endblock %}

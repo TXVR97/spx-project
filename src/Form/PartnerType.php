@@ -38,7 +38,7 @@ class PartnerType extends AbstractType
                 "required" => true
             ])
             ->add('ComContact', EmailType::class,[
-                "label" => 'Email commerciale',
+                "label" => 'Email commercial',
                 "attr" => [
                     "placeholder" => ""
                 ],

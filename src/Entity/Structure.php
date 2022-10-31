@@ -25,6 +25,7 @@ class Structure
         maxMessage: 'Le nom ne peut pas dépasser {{ limit }} characters',
     )]
     #[Assert\NotBlank]
+    #[Assert\Length (min:2)]
     #[ORM\Column(length: 255)]
     private ?string $name = null;
 

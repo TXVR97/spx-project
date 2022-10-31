@@ -23,9 +23,7 @@ class StructureType extends AbstractType
                     "placeholder" => ""
                 ],
                 "required" => true,
-                'constraints' => [
-                    new Assert\Length(['min' => 2, 'max' => 50])
-                ]
+                
             ])
             ->add('adress', TextType::class,[
                 "label" => 'Adresse',

@@ -20,6 +20,12 @@
                         }) }}
 	</div>
     <div class="col-start-3 col-span-2">
+				{{ form_row(form_structure.partner,{
+                            widget_class: 'w-full rounded-md focus:ring focus:ring-opacity-75 focus:ring-indigo-400 dark:border-gray-700 dark:text-gray-900',
+                            label_class: 'text-sm flex justify-center'
+                        }) }}
+     </div>           
+    <div class="col-start-3 col-span-2">
 				{{ form_row(form_structure.status,{
                             widget_class: 'w-full rounded-md focus:ring focus:ring-opacity-75 focus:ring-indigo-400 dark:border-gray-700 dark:text-gray-900',
                             label_class: 'text-sm flex justify-center'

@@ -12,6 +12,7 @@ use Symfony\Component\Form\Extension\Core\Type\TextType;
 
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
+use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 
 
@@ -21,53 +22,57 @@ class PartnerType extends AbstractType
     {
         $builder
             ->add('name', TextType::class,[
-                "label" => 'Nom du Partenaire',
+                "label" => false,
                 "attr" => [
-                    "placeholder" => ""
+                    "placeholder" => "Nom du partenaire"
                 ],
                 
-                "required" => true,
+                
                 
             ])
             
             ->add('description', TextareaType::class,[
-                "label" => 'Description',
+                "label" => false,
                 "attr" => [
-                    "placeholder" => ""
+                    "placeholder" => "Description"
                 ],
-                "required" => true
+                
             ])
             ->add('ComContact', EmailType::class,[
-                "label" => 'Email commercial',
+                "label" => false,
                 "attr" => [
-                    "placeholder" => ""
+                    "placeholder" => "Email du commercial"
                 ],
-                "required" => true
+                
             ])
             ->add('website', UrlType::class,[
-                "label" => 'URL du site',
+                "label" => false,
                 "attr" => [
-                    "placeholder" => ""
+                    "placeholder" => "URL du site"
                 ],
-                "required" => true
+                
             ])
             ->add('ManageContact', EmailType::class,[
-                "label" => 'Email manager',
+                "label" => false,
                 "attr" => [
-                    "placeholder" => ""
+                    "placeholder" => "Email du Manager"
                 ],
-                "required" => true
+                
             ])
             ->add('City',TextType::class,[
-                "label" => 'Ville',
+                "label" => false,
                 "attr" => [
-                    "placeholder" => ""
+                    "placeholder" => "Ville"
                 ],
-                "required" => true
+                
             ])
            
             ->add('image')
-            ->add('status')
+            ->add('status',CheckboxType::class, [
+                "label" => false,
+                'help' => 'Cocher si \'\'actif\'\'',
+               
+            ])
             
             
         ;

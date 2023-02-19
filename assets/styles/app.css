@@ -3,3 +3,6 @@
 @tailwind components;
 @tailwind utilities;
 
+form ul li{
+    color: rgb(182, 23, 23);
+}

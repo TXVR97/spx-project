@@ -11,38 +11,42 @@
 	<div class="w-full md:w-[684px] lg:w-[884px] mx-auto sm:pt-24 ">
 		<div class="p-6 border border-gray-300 sm:rounded-md">
 
-   {{ form_start(registrationForm) }}
+   {{ form_start(registrationForm, {'attr': {'novalidate': 'novalidate'}}) }}
 			<div class="grid grid-cols-6 gap-4 col-span-full lg:col-span-3">
 				<div class="col-span-full sm:col-span-3">	
                         				
 						{{ form_row(registrationForm.full_name,{
-                            widget_class: 'w-full rounded-md focus:ring focus:ring-opacity-75 focus:ring-indigo-400 dark:border-gray-700 dark:text-gray-900',
-                            label_class: 'text-sm'
-                        }) }}																	
+                            widget_class: 'w-full  rounded-md focus:ring focus:ring-opacity-75 focus:ring-indigo-400 dark:border-gray-700 dark:text-gray-900',
+                            label_class: 'text-sm',
+                            
+                        }) }}	
+                        															
 				</div>
+
                 <div class="col-span-full sm:col-span-3">
 				{{ form_row(registrationForm.email,{
-                            widget_class: 'w-full rounded-md focus:ring focus:ring-opacity-75 focus:ring-indigo-400 dark:border-gray-700 dark:text-gray-900',
+                            widget_class: 'w-full  rounded-md focus:ring focus:ring-opacity-75 focus:ring-indigo-400 dark:border-gray-700 dark:text-gray-900',
                             label_class: 'text-sm'
                         }) }}
                 </div>
                 <div  class="col-span-full sm:col-span-3">
 				{{ form_row(registrationForm.plainPassword,{
                             widget_class: 'w-full rounded-md focus:ring focus:ring-opacity-75 focus:ring-indigo-400 dark:border-gray-700 dark:text-gray-900',
-                            label: 'Password'
+                            
                             
                         }) }}
                 </div>
-                <div class="col-span-full sm:col-span-2">
+                <div class="col-span-full sm:col-span-2 ">
 				{{ form_row(registrationForm.roles,{
                             widget_class: 'w-full rounded-md focus:ring focus:ring-opacity-75 focus:ring-indigo-400 dark:border-gray-700 dark:text-gray-900',
-                            label_class: 'text-sm'
+                            
                         }) }}
                 </div>
                 <div class="col-span-full">
 				{{ form_row(registrationForm.partner,{
                             widget_class: 'w-full rounded-md focus:ring focus:ring-opacity-75 focus:ring-indigo-400 dark:border-gray-700 dark:text-gray-900',
-                            label_class: 'text-sm'
+                            label_class: 'text-sm',
+                            label:"Partenaire"
                         }) }}
                 </div>
                 <div class="col-span-full">

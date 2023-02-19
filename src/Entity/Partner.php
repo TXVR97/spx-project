@@ -3,10 +3,6 @@
 namespace App\Entity;
 
 
-
-
-
-
 use App\Entity\User;
 use Cocur\Slugify\Slugify;
 use Doctrine\DBAL\Types\Types;
@@ -27,28 +23,24 @@ class Partner
     #[ORM\OneToMany(mappedBy: 'partner', targetEntity: User::class)]
     private Collection $user;
 
-    #[Assert\Length(
-        min: 2,
-        max: 50,
-        minMessage: 'Le nom doit être au moins de {{ limit }} caractères',
-        maxMessage: 'Le nom ne peut pas dépasser {{ limit }} characters',
-    )]
+    
     #[ORM\Column(length: 255)]
-    #[Assert\NotBlank]
+    #[Assert\NotBlank(message: 'Un nom est requis')]
+    #[Assert\Length(
+        min: 3,
+        max: 150,
+        minMessage: 'Minimum {{ limit }} caractères',
+        maxMessage: 'Maximum {{ limit }} caractères',
+    )]
     private ?string $name = null;
 
-    #[Assert\Length(
-        min: 2,
-        max: 100,
-        minMessage: 'Doit être au moins de {{ limit }} caractères',
-        maxMessage: 'Ne peut pas dépasser {{ limit }} characters',
-    )]
-    #[Assert\NotBlank]
+    
     #[ORM\Column(type: Types::TEXT)]
     private ?string $description = null;
 
+    #[Assert\NotBlank(message: 'Une adresse email est requise')]
     #[Assert\Email(
-        message: 'Cette adresse email {{ value }} n\'est pas valide.',
+        message: 'L\'email {{ value }} n\'est pas valide', 
     )]
     #[ORM\Column(length: 255)]
     private ?string $ComContact = null;
@@ -57,13 +49,15 @@ class Partner
     #[ORM\Column(length: 255)]
     private ?string $website = null;
 
-    #[Assert\Email(
-        message: 'Cette adresse email {{ value }} n\'est pas valide.',
-    )]
+    
     #[ORM\Column(length: 255)]
+    #[Assert\NotBlank(message: 'Une adresse email est requise')]
+    #[Assert\Email(
+        message: 'L\'email {{ value }} n\'est pas valide', 
+    )]
     private ?string $ManageContact = null;
 
-    #[Assert\NotBlank]
+    #[Assert\NotBlank(message: 'Saisissez une ville')]
     #[ORM\Column(length: 255)]
     private ?string $City = null;
 

@@ -18,25 +18,33 @@ class Structure
     #[ORM\Column]
     private ?int $id = null;
 
-    #[Assert\Length(
-        min: 2,
-        max: 50,
-        minMessage: 'Le nom doit être au moins de {{ limit }} caractères',
-        maxMessage: 'Le nom ne peut pas dépasser {{ limit }} characters',
-    )]
-    #[Assert\NotBlank]
-    #[Assert\Length (min:2)]
+    
     #[ORM\Column(length: 255)]
+    #[Assert\NotBlank(message: 'Un nom est requis')]
+    #[Assert\Length(
+        min: 3,
+        max: 50,
+        minMessage: 'Minimum {{ limit }} caractères',
+        maxMessage: 'Maximum {{ limit }} caractères',
+    )]
     private ?string $name = null;
 
-    #[Assert\NotBlank]
     #[ORM\Column(length: 255)]
+    #[Assert\NotBlank(message: 'Une adresse est requise')]
+    #[Assert\Length(
+        min: 3,
+        max: 200,
+        minMessage: 'Minimum {{ limit }} caractères',
+        maxMessage: 'Maximum {{ limit }} caractères',
+    )]
     private ?string $adress = null;
 
-    #[Assert\Email(
-        message: 'Cette adresse email {{ value }} n\'est pas valide.',
-    )]
+    
     #[ORM\Column(length: 255)]
+    #[Assert\NotBlank(message: 'Une adresse email est requise')]
+    #[Assert\Email(
+        message: 'L\'email {{ value }} n\'est pas valide', 
+    )]
     private ?string $manager = null;
 
 

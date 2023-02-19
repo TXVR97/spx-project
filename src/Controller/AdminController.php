@@ -49,7 +49,7 @@ class AdminController extends AbstractController
         $form = $this->createForm(PartnerType::class, $partner);
         $form->handleRequest($request);
 
-        if ($form->isSubmitted() ) {
+        if ($form->isSubmitted() && $form->isValid())  {
             $partner->setCreatedAt(new \DateTimeImmutable());
             
             $manager->persist($partner);

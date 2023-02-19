@@ -22,10 +22,12 @@ class RegistrationFormType extends AbstractType
     {
         $builder
             ->add('full_name', TextType::class, [
-                "label" => 'Nom complet',
+                "label" => false,
+                'attr' => ['placeholder' => 'Nom complet'],
+                
             ])
             -> add('roles', ChoiceType::class, [
-                
+                "label" => false,
                 'choices'  => [
                     'Administrateur' => 'ROLE_ADMIN',
                     'Utilisateur' => 'ROLE_USER',
@@ -35,22 +37,25 @@ class RegistrationFormType extends AbstractType
             ->add('partner')
             ->add('structure')
             ->add('email', EmailType::class,[
-                "label" => 'Email'
+                "label" => false, 
+                'attr' => ['placeholder' => 'Email'],
             ])
             
             ->add('plainPassword', PasswordType::class, [
                 // instead of being set onto the object directly,
                 // this is read and encoded in the controller
-                "label" => 'Mot de passe',
+                "label" => false,
+            
                 'mapped' => false,
-                'attr' => ['autocomplete' => 'new-password'],
+                'attr' => ['autocomplete' => 'new-password',
+                            'placeholder' => 'Mot de passe'],
                 'constraints' => [
                     new NotBlank([
-                        'message' => 'Please enter a password',
+                        'message' => 'Mot de passe requis',
                     ]),
                     new Length([
-                        'min' => 6,
-                        'minMessage' => 'Your password should be at least {{ limit }} characters',
+                        'min' => 8,
+                        'minMessage' => 'votre mot de passe doit avoir au moins {{ limit }} caractères',
                         // max length allowed by Symfony for security reasons
                         'max' => 4096,
                     ]),

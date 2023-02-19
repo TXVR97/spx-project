@@ -7,9 +7,10 @@ use Doctrine\ORM\Mapping as ORM;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
+use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity(repositoryClass: UserRepository::class)]
-#[UniqueEntity(fields: ['email'], message: 'There is already an account with this email')]
+#[UniqueEntity(fields: ['email'], message: 'un compte existe déjà avec cette adresse mail')]
 class User implements UserInterface, PasswordAuthenticatedUserInterface
 {
     #[ORM\Id]
@@ -18,9 +19,20 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     private ?int $id = null;
 
     #[ORM\Column]
+    #[Assert\NotBlank(message: 'le nom complet est requis')]
+    #[Assert\Length(
+        min: 3,
+        max: 50,
+        minMessage: 'Minimum {{ limit }} caractères',
+        maxMessage: 'Maximum {{ limit }} caractères',
+    )]
     private ?string $full_name = null;
 
     #[ORM\Column(length: 180, unique: true)]
+    #[Assert\NotBlank(message: 'Une adresse email est requise')]
+    #[Assert\Email(
+        message: 'L\'email {{ value }} n\'est pas valide', 
+    )]
     private ?string $email = null;
 
     #[ORM\ManyToOne(inversedBy: 'user')]
@@ -29,10 +41,6 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\ManyToOne(inversedBy: 'structure')]
     private ?Structure $structure = null;
 
-    
-
-    
-
     #[ORM\Column]
     private array $roles = [];
 
@@ -40,6 +48,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
      * @var string The hashed password
      */
     #[ORM\Column]
+    #[Assert\NotBlank(message: 'Mot de passe requis')]
     private ?string $password = null;
 
     #[ORM\Column(type: 'boolean')]

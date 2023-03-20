@@ -1,6 +1,7 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Administration{% endblock %}
+{% block title %}Administration
+{% endblock %}
 
 
 {% block content %}
@@ -10,8 +11,9 @@
 
 
 		<div class="flex justify-center">
-			<div class="relative h-9">
-				
+			<div
+				class="relative h-9">
+
 				{# Filter-Search #}
 
 				{{form_start(form_filter)}}
@@ -46,11 +48,11 @@
 							</svg>
 						</button>
 					</span>
-					<div class="sm:opacity-0 sm:invisible dropdown-menu transition-all duration-300 transform origin-center -translate-y-2 scale-95">
+					<div class="sm:opacity-0 invisible dropdown-menu transition-all duration-300 transform origin-center -translate-y-2 scale-95">
 						<div class="absolute -right-16 w-56 mt-2 origin-center bg-white border border-gray-200 divide-y divide-gray-100 rounded-md shadow-lg outline-none" aria-labelledby="headlessui-menu-button-1" id="headlessui-menu-items-117" role="menu">
 							<div class="px-4 py-3">
 								<p class="text-sm leading-5">Connecté en tant que</p>
-								
+
 								<p class="text-sm font-medium leading-5 text-gray-900 truncate">Administrateur</p>
 							</div>
 							<div class="py-1">
@@ -64,14 +66,6 @@
 				</div>
 			</div>
 		</div>
-
-		<style>
-			.dropdown:focus-within .dropdown-menu {
-				opacity: 1;
-				transform: translate(0) scale(1);
-				visibility: visible;
-			}
-		</style>
 
 
 		{# Boucle Cards List #}
@@ -128,6 +122,9 @@
 		<div class="navigation">
 			{{ knp_pagination_render(partners) }}
 		</div>
-
+		
 	</body>
+	{% include "partials/_chatbox.html.twig" %}
+	
 {% endblock %}
+

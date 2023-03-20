@@ -259,7 +259,7 @@ var possibleInput = {
   },
   "commandes" : () => {
     responseText("Voici ce que je peux comprendre:");
-    responseText("partenaire,service, utilisateur, structure, experience, hobbies / interests, contact, rick roll");
+    responseText("partenaire,service, utilisateur, structure");
     commandReset(8);
     return;
   },
